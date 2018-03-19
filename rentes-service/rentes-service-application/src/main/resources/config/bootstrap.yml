@@ -1,0 +1,27 @@
+#####################################################################
+# Configuration Spring de base
+#####################################################################
+# app name
+spring:
+
+  application:
+    name:                                               rentes-service
+
+# active profile
+  profiles:
+    active:                                             dev,db2
+#dev h2
+#spring.profiles.active=dev
+
+#config branche
+  cloud:
+    config:
+      label:                                            rentes-service
+# config uri
+      uri:                                              http://localhost:8100/config
+# fail fast si pas config server
+      failFast:                                         true
+
+logging:
+  # url format : /{apname}/{profile}/{label}/{filename}
+  config:               http://localhost:8100/config/rentes-service/default/rentes-service/logback-spring.xml
