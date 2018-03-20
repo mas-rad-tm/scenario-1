@@ -2,6 +2,7 @@ package ch.globaz.tmmas.rentesservice.application.service;
 
 
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.command.TraiterDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
 import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
 
@@ -12,10 +13,11 @@ public interface DossierService {
 
 	Dossier sauve(Dossier dossier);
 
-	List<Dossier> getAll();
+	List<DossierDto> getAll();
 
     Optional<DossierDto> getById(Long id);
 
-
 	DossierDto creerDossier(CreerDossierCommand command);
+
+	DossierDto traiterDossier(TraiterDossierCommand command,  Long dossierId);
 }

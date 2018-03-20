@@ -18,6 +18,7 @@ public class Dossier implements Entity<Dossier> {
 
     private DossierId identifiant;
     private LocalDate dateEnregistrement;
+    private LocalDate dateTraitement;
     private Long requerantId;
     private DossierStatus status;
 
@@ -57,7 +58,11 @@ public class Dossier implements Entity<Dossier> {
         return new Dossier(command.getDateEnregistrement(),command.getRequerantId());
     }
 
-
+    public Dossier traiterDossier(LocalDate dateTraitement){
+        this.status = DossierStatus.TRAITE;
+        this.dateTraitement = dateTraitement;
+        return this;
+    }
 
 
 

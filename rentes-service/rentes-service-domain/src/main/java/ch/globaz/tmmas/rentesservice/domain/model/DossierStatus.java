@@ -5,5 +5,5 @@ import lombok.ToString;
 @ToString
 public enum DossierStatus {
 
-    INITIE, CLOT;
+    INITIE, TRAITE, CLOT;
 }
