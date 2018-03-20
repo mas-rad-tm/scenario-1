@@ -33,6 +33,8 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 	@Override
 	public Dossier store(Dossier dossier) {
 
+		LOGGER.debug("store (): {}", dossier);
+
 		getSession().saveOrUpdate(dossier);
 
 		publisher.publishEvent(DossierCreeEvent.fromEntity(dossier));

@@ -1,7 +1,10 @@
 package ch.globaz.tmmas.rentesservice.application.service.impl;
 
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
+import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,21 +18,38 @@ public class DossierServiceImpl implements DossierService {
 	DossierRepository repository;
 
 	@Override
-	public ch.globaz.tmmas.rentesservice.domain.model.Dossier sauve(ch.globaz.tmmas.rentesservice.domain.model.Dossier dossier) {
+	public Dossier sauve(Dossier dossier) {
 
 		return repository.store(dossier);
 	}
 
 	@Override
-	public List<ch.globaz.tmmas.rentesservice.domain.model.Dossier> getAll() {
+	public List<Dossier> getAll() {
 		return repository.getAll();
 	}
 
 	@Override
-	public Optional getById(Long id) {
+	public Optional<DossierDto> getById(Long id) {
 
-		Optional<ch.globaz.tmmas.rentesservice.domain.model.Dossier> pp = repository.getById(id);
+		Optional<Dossier> dossier = repository.getById(id);
 
-		return pp;
+		if(dossier.isPresent()){
+			DossierDto dto = DossierDto.fromEntity(dossier.get());
+			return Optional.of(dto);
+		}else{
+			return Optional.ofNullable(null);
+		}
+
+	}
+
+	@Override
+	public DossierDto creerDossier(CreerDossierCommand command) {
+
+		Dossier dossier = Dossier.builder(command);
+
+		dossier =  repository.store(dossier);
+
+		return DossierDto.fromEntity(dossier);
+
 	}
 }

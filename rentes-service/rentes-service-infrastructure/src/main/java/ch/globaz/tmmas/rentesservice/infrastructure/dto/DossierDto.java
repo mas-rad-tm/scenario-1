@@ -1,5 +1,6 @@
 package ch.globaz.tmmas.rentesservice.infrastructure.dto;
 
+
 import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.model.DossierStatus;
 import ch.globaz.tmmas.rentesservice.infrastructure.dto.localdate.LocalDateDeserializer;

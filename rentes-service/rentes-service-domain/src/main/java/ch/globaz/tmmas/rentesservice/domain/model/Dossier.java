@@ -1,6 +1,7 @@
 package ch.globaz.tmmas.rentesservice.domain.model;
 
 import ch.globaz.tmmas.rentesservice.domain.Entity;
+import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -11,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @EqualsAndHashCode
 @Getter
-public class Dossier implements Entity<Dossier>{
+public class Dossier implements Entity<Dossier> {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -51,6 +52,15 @@ public class Dossier implements Entity<Dossier>{
     public static Dossier builder(Long requerantId, LocalDate dateEnregistrement) {
         return new Dossier(dateEnregistrement,requerantId);
     }
+
+    public static Dossier builder(CreerDossierCommand command) {
+        return new Dossier(command.getDateEnregistrement(),command.getRequerantId());
+    }
+
+
+
+
+
     //hibernate
     private Long id;
 

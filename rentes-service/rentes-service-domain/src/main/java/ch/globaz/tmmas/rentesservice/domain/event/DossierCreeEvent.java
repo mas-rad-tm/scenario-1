@@ -2,13 +2,11 @@ package ch.globaz.tmmas.rentesservice.domain.event;
 
 import ch.globaz.tmmas.rentesservice.domain.ValueObject;
 import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
-import ch.globaz.tmmas.rentesservice.domain.model.DossierId;
-import ch.globaz.tmmas.rentesservice.domain.model.DossierStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDate;
+
 
 @EqualsAndHashCode
 @ToString

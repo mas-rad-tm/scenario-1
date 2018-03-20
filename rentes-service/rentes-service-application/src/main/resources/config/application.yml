@@ -1,0 +1,38 @@
+#profiles spring
+spring:
+  profiles:
+    active:                          h2
+
+# mode jar, port et context
+server:
+  port:                              ${PORT:9020}
+  contextPath:                       /rentes-service
+#####################################################################
+# Configuration Spring actuator
+#####################################################################
+management:
+  security:
+    enabled:                            false
+  #context path pour actuator
+  context-path:                         /actuator
+
+# configuration des endpoints
+endpoints:
+  hypermedia:
+    enabled:                            true
+  actuator:
+    enabled:                            true
+  beans:
+    enabled:                            true
+  env:
+    enabled:                            true
+  metrics:
+    enabled:                            true
+  health:
+    enabled:                            true
+  mappings:
+    enabled:                            true
+  docs:
+    enabled:                            true
+  logfile:
+    enabled:                            true

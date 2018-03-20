@@ -1,6 +1,10 @@
 package ch.globaz.tmmas.rentesservice.application.api.web;
 
+
+import ch.globaz.tmmas.rentesservice.application.api.web.dto.CreerDossierDto;
+import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
 import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
 import org.slf4j.Logger;
@@ -13,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,33 +36,31 @@ public class DossiersController {
 	@Autowired
 	DossierService dossierService;
 
+	@Autowired
+	InternalCommandPublisher commandPublisher;
+
 
 
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity createDossier(@RequestBody DossierDto dto){
+	public ResponseEntity creerDossier(@RequestBody CreerDossierDto dto){
 
-		LOGGER.debug("createDossier(), {}",dto);
+		LOGGER.info("creerDossier(), {}",dto);
 
+		CreerDossierCommand command = new CreerDossierCommand(dto.getDateEnregistrement(),dto.getRequerantId());
 
+		commandPublisher.publishCommand(command);
 
+		DossierDto dossier = dossierService.creerDossier(command);
 
+		dossier.add(linkTo(
+				methodOn(DossiersController.class).dossierById(dossier.getTechnicalId()))
+				.withSelfRel());
 
-		    LOGGER.debug("createDossier()");
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(new UriTemplate(DOSSIER).expand(dossier.getTechnicalId()));
 
-			Dossier dossier = dossierService.sauve(Dossier.builder(
-					Long.valueOf(dto.getRequerantId()),
-					dto.getDateEnregistrement()));
-
-			DossierDto rdto = DossierDto.fromEntity(dossier);
-
-			rdto.add(linkTo(methodOn(DossiersController.class).getDossierById(rdto.getTechnicalId())).withSelfRel());
-			HttpHeaders headers = new HttpHeaders();
-			headers.setLocation(new UriTemplate(DOSSIER).expand(rdto.getTechnicalId()));
-
-
-			return new ResponseEntity<>(rdto, HttpStatus.CREATED);
-
+		return new ResponseEntity<>(dossier, headers, HttpStatus.CREATED);
 
 	}
 
@@ -68,33 +71,34 @@ public class DossiersController {
 
 		List<Dossier> dossiers = dossierService.getAll();
 
-
-
-
 		return new ResponseEntity<>(getAllAsDto(dossiers), HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{personneId}")
-	public ResponseEntity getDossierById(@PathVariable Long personneId){
+	@RequestMapping(method = RequestMethod.GET, value = "/{dossierId}")
+	public ResponseEntity dossierById(@PathVariable Long dossierId){
 
-		LOGGER.debug("getDossierById(), {}",personneId);
+		LOGGER.debug("dossierById(), {}",dossierId);
 
-		Optional<Dossier> dossier = dossierService.getById(personneId);
+		Optional<DossierDto> dossier = dossierService.getById(dossierId);
 
 		if(dossier.isPresent()){
-			DossierDto dto = DossierDto.fromEntity(dossier.get());
 
-			dto.add(linkTo(methodOn(DossiersController.class).getDossierById(dto.getTechnicalId())).withSelfRel());
+			DossierDto dto = dossier.get();
+
+			dto.add(linkTo(methodOn(
+					DossiersController.class).dossierById(dto.getTechnicalId()))
+					.withSelfRel());
+
 			HttpHeaders headers = new HttpHeaders();
 			headers.setLocation(new UriTemplate(DOSSIER).expand(dto.getTechnicalId()));
 
 
-			LOGGER.debug("getPersonById() return  {}",dto);
+			LOGGER.debug("getDossierById() return  {}",dto);
 
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		}else{
 
-			return new ResponseEntity<>("No entity found with id " + personneId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("No entity found with id " + dossier, HttpStatus.NOT_FOUND);
 		}
 
 	}

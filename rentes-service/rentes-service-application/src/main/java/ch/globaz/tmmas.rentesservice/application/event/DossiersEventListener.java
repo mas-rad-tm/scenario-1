@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DossiersEventListener {
-
+/**
     private static final Logger LOGGER = LoggerFactory.getLogger(DossiersEventListener.class);
 
     @Autowired
@@ -31,4 +31,5 @@ public class DossiersEventListener {
         notificationService.notify(mapper.writeValueAsString(event));
 
     }
+    */
 }

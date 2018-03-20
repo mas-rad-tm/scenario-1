@@ -22,8 +22,7 @@
     <!-- ****** Propriétés ****** -->
     <properties>
         <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
-        <spring.version>4.3.13.RELEASE</spring.version>
-
+        <spring.version>4.3.14.RELEASE</spring.version>
         <maven-war.plugin.version>3.2.0</maven-war.plugin.version>
         <maven-source.plugin>3.0.1</maven-source.plugin>
         <application.packaging.type>war</application.packaging.type>
@@ -31,11 +30,7 @@
         <logback.version>1.2.3</logback.version>
         <logback.encoder.version>4.11</logback.encoder.version>
         <hibernate.version>5.2.12.Final</hibernate.version>
-
-
         <db2.driver.version>10.1</db2.driver.version>
-
-
         <tomcat.jdbc.version>9.0.2</tomcat.jdbc.version>
         <junit.version>4.12</junit.version>
         <assertJ.version>3.9.0</assertJ.version>
@@ -50,15 +45,8 @@
 
     <!-- ****** Profils maven ****** -->
     <profiles>
-        <!-- profil jar pour build de l'application en jar
-         usage: mvn clean install -Pjar -->
-        <profile>
-            <id>jar</id>
-            <properties>
-                <application.packaging.type>jar</application.packaging.type>
-            </properties>
-        </profile>
 
+        <!-- pour la gestion de l'artefact ibm db2 -->
         <profile>
             <id>globaz</id>
             <properties>
