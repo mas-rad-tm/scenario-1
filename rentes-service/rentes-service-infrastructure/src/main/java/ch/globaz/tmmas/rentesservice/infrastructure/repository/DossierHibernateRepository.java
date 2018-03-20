@@ -31,9 +31,9 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 
 	@Transactional
 	@Override
-	public Dossier store(Dossier dossier) {
+	public Dossier initieDossier(Dossier dossier) {
 
-		LOGGER.debug("store (): {}", dossier);
+		LOGGER.debug("initieDossier (): {}", dossier);
 
 		getSession().saveOrUpdate(dossier);
 
@@ -58,6 +58,16 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 
 		return dossier;
 
+	}
+
+	@Transactional
+	@Override
+	public Dossier validerDossier(Dossier dossier) {
+
+
+		getSession().saveOrUpdate(dossier);
+
+		return dossier;
 	}
 
 }

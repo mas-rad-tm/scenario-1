@@ -59,7 +59,7 @@ public class Dossier implements Entity<Dossier> {
     }
 
     public Dossier traiterDossier(LocalDate dateTraitement){
-        this.status = DossierStatus.TRAITE;
+        this.status = DossierStatus.VALIDE;
         this.dateTraitement = dateTraitement;
         return this;
     }

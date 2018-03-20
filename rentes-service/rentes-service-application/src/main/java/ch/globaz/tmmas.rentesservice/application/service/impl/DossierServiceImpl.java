@@ -2,7 +2,7 @@ package ch.globaz.tmmas.rentesservice.application.service.impl;
 
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.TraiterDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
@@ -22,7 +22,7 @@ public class DossierServiceImpl implements DossierService {
 	@Override
 	public Dossier sauve(Dossier dossier) {
 
-		return repository.store(dossier);
+		return repository.initieDossier(dossier);
 	}
 
 	@Override
@@ -53,16 +53,29 @@ public class DossierServiceImpl implements DossierService {
 
 		Dossier dossier = Dossier.builder(command);
 
-		dossier =  repository.store(dossier);
+		dossier =  repository.initieDossier(dossier);
 
 		return DossierDto.fromEntity(dossier);
 
 	}
 
 	@Override
-	public DossierDto traiterDossier(TraiterDossierCommand command, Long dossierId) {
-		Optional<Dossier> dossier = repository.getById(dossierId);
-		return null;
+	public Optional<DossierDto> validerDossier(ValiderDossierCommand command, Long dossierId) {
+
+		Optional<Dossier> optionnalDossier = repository.getById(dossierId);
+
+		if(optionnalDossier.isPresent()){
+			Dossier dossier = optionnalDossier.get();
+			dossier.traiterDossier(command.getDateValidation());
+
+			repository.validerDossier(dossier);
+
+			DossierDto dto = DossierDto.fromEntity(dossier);
+			return Optional.of(dto);
+		}else{
+			return Optional.ofNullable(null);
+		}
+
 	}
 
 

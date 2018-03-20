@@ -12,11 +12,11 @@ import java.time.LocalDate;
 
 @Getter
 @ToString
-public class TraiterDossierDto {
+public class ValiderDossierDto {
 
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate dateTraitement;
 
-	public TraiterDossierDto(){}
+	public ValiderDossierDto(){}
 }

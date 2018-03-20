@@ -7,11 +7,13 @@ import java.util.Optional;
 
 public interface DossierRepository {
 
-	ch.globaz.tmmas.rentesservice.domain.model.Dossier store (ch.globaz.tmmas.rentesservice.domain.model.Dossier dossier);
+	Dossier initieDossier(ch.globaz.tmmas.rentesservice.domain.model.Dossier dossier);
 
 
-	List<ch.globaz.tmmas.rentesservice.domain.model.Dossier> getAll();
+	List<Dossier> getAll();
 
 
-    Optional<ch.globaz.tmmas.rentesservice.domain.model.Dossier> getById(Long dossierId);
+    Optional<Dossier> getById(Long dossierId);
+
+	Dossier validerDossier(Dossier dossier);
 }
