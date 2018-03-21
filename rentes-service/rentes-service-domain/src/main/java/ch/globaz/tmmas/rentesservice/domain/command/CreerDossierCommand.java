@@ -14,10 +14,6 @@ public class CreerDossierCommand implements DomainCommand {
 	private LocalDate dateEnregistrement;
 	private Long requerantId;
 
-
-	public CreerDossierCommand(LocalDate dateEnregistrement, Long requerantId){
-		this.dateEnregistrement = dateEnregistrement;
-		this.requerantId = requerantId;
-	}
+	CreerDossierCommand () {}
 
 }

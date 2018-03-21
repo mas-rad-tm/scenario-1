@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.dto.localdate;
+package ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

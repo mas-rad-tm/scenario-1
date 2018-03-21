@@ -1,20 +1,16 @@
 package ch.globaz.tmmas.rentesservice.application.api.web;
 
 
-import ch.globaz.tmmas.rentesservice.application.api.web.dto.CreerDossierDto;
-import ch.globaz.tmmas.rentesservice.application.api.web.dto.ValiderDossierDto;
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
-import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.UriTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -44,37 +40,34 @@ public class DossiersController {
 
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity creerDossier(@RequestBody CreerDossierDto dto){
+	public ResponseEntity creerDossier(@RequestBody CreerDossierCommand command){
 
-		LOGGER.info("creerDossier(), {}",dto);
-
-		CreerDossierCommand command = new CreerDossierCommand(dto.getDateEnregistrement(),dto.getRequerantId());
+		LOGGER.info("creerDossier(), {}",command);
 
 		commandPublisher.publishCommand(command);
 
-		DossierDto dossier = dossierService.creerDossier(command);
+		DossierResource dossierResource = dossierService.creerDossier(command);
 
-		putSelfLink(dossier);
+		putSelfLink(dossierResource);
 
-		return new ResponseEntity<>(dossier, putLocationHeader(dossier), HttpStatus.CREATED);
+		return new ResponseEntity<>(dossierResource, putLocationHeader(dossierResource), HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(value = "/{dossierId}/valider", method = RequestMethod.PUT)
-	public ResponseEntity validerDossier(@PathVariable Long dossierId, @RequestBody ValiderDossierDto dto){
+	public ResponseEntity validerDossier(@PathVariable Long dossierId, @RequestBody ValiderDossierCommand
+			validerDossierCommand){
 
-		LOGGER.info("validerDossier(), {}",dto);
+		LOGGER.info("validerDossier(), {}",validerDossierCommand);
 
-		ValiderDossierCommand command = new ValiderDossierCommand(dto.getDateTraitement());
+		commandPublisher.publishCommand(validerDossierCommand);
 
-		commandPublisher.publishCommand(command);
-
-		Optional<DossierDto> optionnalDossier = dossierService.validerDossier(command,dossierId);
+		Optional<DossierResource> optionnalDossier = dossierService.validerDossier(validerDossierCommand,dossierId);
 
 		if(optionnalDossier.isPresent()){
 
-			DossierDto dossierDto = optionnalDossier.get();
-			putSelfLink(dossierDto);
+			DossierResource dossierResource = optionnalDossier.get();
+			putSelfLink(dossierResource);
 
 			return new ResponseEntity<>(optionnalDossier,  HttpStatus.OK);
 
@@ -87,15 +80,15 @@ public class DossiersController {
 
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<DossierDto>> allDossiers(){
+	public ResponseEntity<List<DossierResource>> allDossiers(){
 
-		List<DossierDto> dossiersDto = dossierService.getAll();
+		List<DossierResource> dossiersResource = dossierService.getAll();
 
-		dossiersDto.stream().forEach(dossierDto -> {
-			putSelfLink(dossierDto);
+		dossiersResource.stream().forEach(resource -> {
+			putSelfLink(resource);
 		});
 
-		return new ResponseEntity<>(dossiersDto, HttpStatus.OK);
+		return new ResponseEntity<List<DossierResource>>(dossiersResource, HttpStatus.OK);
 	}
 
 
@@ -104,17 +97,17 @@ public class DossiersController {
 
 		LOGGER.debug("dossierById(), {}",dossierId);
 
-		Optional<DossierDto> dossier = dossierService.getById(dossierId);
+		Optional<DossierResource> optionnalDossier = dossierService.getById(dossierId);
 
-		if(dossier.isPresent()){
+		if(optionnalDossier.isPresent()){
 
-			DossierDto dto = dossier.get();
+			DossierResource dossierResource = optionnalDossier.get();
 
-			putSelfLink(dto);
+			putSelfLink(dossierResource);
 
-			LOGGER.debug("getDossierById() return  {}",dto);
+			LOGGER.debug("getDossierById() return  {}",dossierResource);
 
-			return new ResponseEntity<>(dto, HttpStatus.OK);
+			return new ResponseEntity<>(dossierResource, HttpStatus.OK);
 		}
 
 
@@ -123,19 +116,23 @@ public class DossiersController {
 
 	}
 
-	private DossierDto putSelfLink(DossierDto dossierDto) {
+	private DossierResource putSelfLink(DossierResource dossierResource) {
 
-		dossierDto.add(linkTo(methodOn(
-					DossiersController.class).dossierById(dossierDto.getTechnicalId()))
+		dossierResource.add(linkTo(methodOn(
+					DossiersController.class).dossierById(dossierResource.getTechnicalId()))
 					.withSelfRel());
 
+		dossierResource.add(linkTo(methodOn(
+				DossiersController.class).validerDossier(dossierResource.getRequerantId(),null))
+				.withRel("valider"));
 
-		return dossierDto;
+
+		return dossierResource;
 	}
 
-	private HttpHeaders putLocationHeader(DossierDto dossier) {
+	private HttpHeaders putLocationHeader(DossierResource dossierResource) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(new UriTemplate(DOSSIER).expand(dossier.getTechnicalId()));
+		headers.setLocation(new UriTemplate(DOSSIER).expand(dossierResource.getTechnicalId()));
 		return headers;
 	}
 

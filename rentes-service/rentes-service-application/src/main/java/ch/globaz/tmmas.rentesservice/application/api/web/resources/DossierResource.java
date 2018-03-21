@@ -1,23 +1,20 @@
-package ch.globaz.tmmas.rentesservice.infrastructure.dto;
+package ch.globaz.tmmas.rentesservice.application.api.web.resources;
 
-
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateDeserializer;
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateSerializer;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
-import ch.globaz.tmmas.rentesservice.infrastructure.dto.localdate.LocalDateDeserializer;
-import ch.globaz.tmmas.rentesservice.infrastructure.dto.localdate.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@ToString
 @Getter
-public class DossierDto extends ResourceSupport {
+public class DossierResource extends ResourceSupport{
 
 	private String identifiant;
 	private Long requerantId;
@@ -32,10 +29,10 @@ public class DossierDto extends ResourceSupport {
 	private DossierStatus status;
 
 
-	public DossierDto(){}
+	public DossierResource(){}
 
 
-	private DossierDto(Long id, String numero, Long requerantId, String dateEnregistrement, DossierStatus status){
+	private DossierResource(Long id, String numero, Long requerantId, String dateEnregistrement, DossierStatus status){
 
 		this.identifiant = numero;
 		this.requerantId = requerantId;
@@ -48,10 +45,10 @@ public class DossierDto extends ResourceSupport {
 
 
 
-	public static DossierDto fromEntity(Dossier dossier){
+	public static DossierResource fromEntity(Dossier dossier){
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		return new DossierDto(dossier.id(),
+		return new DossierResource(dossier.id(),
 				dossier.identifiant().identifiant(), dossier.requerantId(),
 				dossier.dateEnregistrement().format(formatter), dossier.status());
 	}

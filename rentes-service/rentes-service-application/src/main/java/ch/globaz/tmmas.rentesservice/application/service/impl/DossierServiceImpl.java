@@ -1,11 +1,11 @@
 package ch.globaz.tmmas.rentesservice.application.service.impl;
 
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
-import ch.globaz.tmmas.rentesservice.infrastructure.dto.DossierDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,21 +26,21 @@ public class DossierServiceImpl implements DossierService {
 	}
 
 	@Override
-	public List<DossierDto> getAll() {
+	public List<DossierResource> getAll() {
 		List<Dossier> dossiers =  repository.getAll();
 
 		return dossiers.stream().map(dossier -> {
-			return DossierDto.fromEntity(dossier);
+			return DossierResource.fromEntity(dossier);
 		}).collect(Collectors.toList());
 	}
 
 	@Override
-	public Optional<DossierDto> getById(Long id) {
+	public Optional<DossierResource> getById(Long id) {
 
 		Optional<Dossier> dossier = repository.getById(id);
 
 		if(dossier.isPresent()){
-			DossierDto dto = DossierDto.fromEntity(dossier.get());
+			DossierResource dto = DossierResource.fromEntity(dossier.get());
 			return Optional.of(dto);
 		}else{
 			return Optional.ofNullable(null);
@@ -49,18 +49,18 @@ public class DossierServiceImpl implements DossierService {
 	}
 
 	@Override
-	public DossierDto creerDossier(CreerDossierCommand command) {
+	public DossierResource creerDossier(CreerDossierCommand command) {
 
 		Dossier dossier = Dossier.builder(command);
 
 		dossier =  repository.initieDossier(dossier);
 
-		return DossierDto.fromEntity(dossier);
+		return DossierResource.fromEntity(dossier);
 
 	}
 
 	@Override
-	public Optional<DossierDto> validerDossier(ValiderDossierCommand command, Long dossierId) {
+	public Optional<DossierResource> validerDossier(ValiderDossierCommand command, Long dossierId) {
 
 		Optional<Dossier> optionnalDossier = repository.getById(dossierId);
 
@@ -70,7 +70,7 @@ public class DossierServiceImpl implements DossierService {
 
 			repository.validerDossier(dossier);
 
-			DossierDto dto = DossierDto.fromEntity(dossier);
+			DossierResource dto = DossierResource.fromEntity(dossier);
 			return Optional.of(dto);
 		}else{
 			return Optional.ofNullable(null);

@@ -9,8 +9,5 @@ public class ValiderDossierCommand implements DomainCommand{
 
 	private LocalDate dateValidation;
 
-	public ValiderDossierCommand(LocalDate dateValidation){
-		this.dateValidation = dateValidation;
-
-	}
+	public ValiderDossierCommand(){}
 }

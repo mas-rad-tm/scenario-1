@@ -1,5 +1,8 @@
 package ch.globaz.tmmas.rentesservice.application.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -20,4 +23,12 @@ public class SwaggerConfiguration {
 				.paths(PathSelectors.any())
 				.build();
 	}
+
+	/**@Bean
+	public ObjectMapper createObjectMapper() {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
+		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		return mapper;
+	}*/
 }
