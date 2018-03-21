@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.domain.model;
+package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
 import lombok.ToString;
 

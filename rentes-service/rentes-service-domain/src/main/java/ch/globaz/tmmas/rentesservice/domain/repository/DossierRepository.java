@@ -1,13 +1,13 @@
 package ch.globaz.tmmas.rentesservice.domain.repository;
 
-import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface DossierRepository {
 
-	Dossier initieDossier(ch.globaz.tmmas.rentesservice.domain.model.Dossier dossier);
+	Dossier initieDossier(Dossier dossier);
 
 
 	List<Dossier> getAll();

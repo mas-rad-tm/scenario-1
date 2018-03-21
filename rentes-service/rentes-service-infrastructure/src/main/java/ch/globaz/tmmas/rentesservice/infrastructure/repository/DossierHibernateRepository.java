@@ -3,7 +3,7 @@ package ch.globaz.tmmas.rentesservice.infrastructure.repository;
 
 
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
-import ch.globaz.tmmas.rentesservice.domain.model.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
