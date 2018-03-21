@@ -69,7 +69,7 @@ public class DossiersController {
 			DossierResource dossierResource = optionnalDossier.get();
 			putSelfLink(dossierResource);
 
-			return new ResponseEntity<>(optionnalDossier,  HttpStatus.OK);
+			return new ResponseEntity<>(dossierResource,  HttpStatus.OK);
 
 		}
 

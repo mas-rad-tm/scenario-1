@@ -24,8 +24,6 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 	@Autowired
 	ObjectMapper mapper;
 
-	@Autowired
-	ApplicationEventPublisher publisher;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DossierHibernateRepository.class);
 
@@ -36,8 +34,6 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 		LOGGER.debug("initieDossier (): {}", dossier);
 
 		getSession().saveOrUpdate(dossier);
-
-		publisher.publishEvent(DossierCreeEvent.fromEntity(dossier));
 
 		return dossier;
 	}

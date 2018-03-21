@@ -2,6 +2,7 @@ package ch.globaz.tmmas.rentesservice.application.event;
 
 
 
+import ch.globaz.tmmas.rentesservice.domain.event.DomainEvent;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
 import ch.globaz.tmmas.rentesservice.domain.notification.NotificationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,22 +15,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DossiersEventListener {
-/**
+
     private static final Logger LOGGER = LoggerFactory.getLogger(DossiersEventListener.class);
 
+    /**
     @Autowired
     NotificationService notificationService;
 
     @Autowired
     ObjectMapper mapper;
 
+*/
+
     @EventListener
-    void rentesCreesEvent(DossierCreeEvent event) throws JsonProcessingException {
+    void onDomainEvent(DomainEvent event) throws JsonProcessingException {
 
-        LOGGER.info("RenteCree Event {}",event);
+        LOGGER.info("onDomainEvent {}",event);
 
-        notificationService.notify(mapper.writeValueAsString(event));
+
 
     }
-    */
+
 }

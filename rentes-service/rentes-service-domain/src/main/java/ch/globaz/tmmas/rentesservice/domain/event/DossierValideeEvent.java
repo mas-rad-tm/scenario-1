@@ -2,17 +2,15 @@ package ch.globaz.tmmas.rentesservice.domain.event;
 
 import ch.globaz.tmmas.rentesservice.domain.ValueObject;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 
-
 @EqualsAndHashCode
 @ToString
 @Getter
-public class DossierCreeEvent implements DomainEvent {
+public class DossierValideeEvent implements DomainEvent {
 
     private String identifiant;
     private String dateEnregistrement;
@@ -20,7 +18,7 @@ public class DossierCreeEvent implements DomainEvent {
     private String status;
     private Long id;
 
-    public DossierCreeEvent(Long id,String identifiant, String dateEnregistrement, Long requerantId, String status) {
+    public DossierValideeEvent(Long id, String identifiant, String dateEnregistrement, Long requerantId, String status) {
         this.identifiant = identifiant;
         this.dateEnregistrement = dateEnregistrement;
         this.requerantId = requerantId;
@@ -28,12 +26,12 @@ public class DossierCreeEvent implements DomainEvent {
         this.id = id;
     }
 
-    public DossierCreeEvent(){}
+    public DossierValideeEvent(){}
 
 
 
-    public static DossierCreeEvent fromEntity(Dossier dossier) {
-        return new DossierCreeEvent(dossier.getId(),
+    public static DossierValideeEvent fromEntity(Dossier dossier) {
+        return new DossierValideeEvent(dossier.getId(),
                 dossier.getIdentifiant().identifiant(),dossier
                 .getDateEnregistrementAsString(),
                 dossier

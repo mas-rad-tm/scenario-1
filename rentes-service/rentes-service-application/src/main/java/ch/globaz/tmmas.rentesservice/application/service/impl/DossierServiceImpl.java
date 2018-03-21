@@ -1,12 +1,15 @@
 package ch.globaz.tmmas.rentesservice.application.service.impl;
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
+import ch.globaz.tmmas.rentesservice.application.event.impl.DomainEventPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,6 +21,9 @@ public class DossierServiceImpl implements DossierService {
 
 	@Autowired
 	DossierRepository repository;
+
+	@Autowired
+	DomainEventPublisher eventPublisher;
 
 	@Override
 	public Dossier sauve(Dossier dossier) {
@@ -54,6 +60,8 @@ public class DossierServiceImpl implements DossierService {
 		Dossier dossier = Dossier.builder(command);
 
 		dossier =  repository.initieDossier(dossier);
+
+		eventPublisher.publishEvent(DossierCreeEvent.fromEntity(dossier));
 
 		return DossierResource.fromEntity(dossier);
 

@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ApplicationCommandPublisher implements InternalCommandPublisher {
+public class DomainCommandPublisher implements InternalCommandPublisher {
 
 	@Autowired
 	ApplicationEventPublisher commandPublisher;
