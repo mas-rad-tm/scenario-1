@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.PostConstruct;
 import java.net.InetAddress;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
  */
 
 @SpringBootApplication
+@EnableAsync(proxyTargetClass = true)
 @EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
 @ComponentScan(basePackages = {"ch.globaz.tmmas.rentesservice"})
 public class RentesServiceApplication {
@@ -127,4 +129,6 @@ public class RentesServiceApplication {
 		}
 
 	}
+
+
 }

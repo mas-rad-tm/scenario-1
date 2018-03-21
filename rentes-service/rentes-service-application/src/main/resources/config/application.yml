@@ -1,7 +1,14 @@
-#profiles spring
+#####################################################################
+# Configuration Spring de base
+#####################################################################
+# app name
 spring:
+  application:
+    name:                            rentes-service
+
+#profiles spring
   profiles:
-    active:                          h2
+    active:                          h2,globaz
 
 # mode jar, port et context
 server:

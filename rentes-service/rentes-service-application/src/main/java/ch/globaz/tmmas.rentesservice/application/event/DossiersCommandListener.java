@@ -14,6 +14,6 @@ public class DossiersCommandListener {
 
     @EventListener
     public void onCommand(DomainCommand command){
-        LOGGER.info("onCommand: {}",command);
+        LOGGER.info("onDomainCommand: {}",command);
     }
 }
