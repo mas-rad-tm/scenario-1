@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import java.util.Optional;
@@ -41,7 +42,7 @@ public class DossiersController {
 
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity creerDossier(@RequestBody CreerDossierCommand command){
+	public ResponseEntity creerDossier(@Valid @RequestBody CreerDossierCommand command){
 
 		LOGGER.info("creerDossier(), {}",command);
 

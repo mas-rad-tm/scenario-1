@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @EqualsAndHashCode
@@ -14,7 +15,9 @@ import java.time.LocalDate;
 public class CreerDossierCommand implements DomainCommand,ValueObject<CreerDossierCommand> {
 
 
+	@NotNull
 	private LocalDate dateEnregistrement;
+	@NotNull
 	private Long requerantId;
 
 	CreerDossierCommand () {}
