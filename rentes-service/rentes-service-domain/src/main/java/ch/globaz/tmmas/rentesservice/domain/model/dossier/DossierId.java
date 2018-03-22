@@ -1,6 +1,6 @@
 package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
-import ch.globaz.tmmas.rentesservice.domain.ValueObject;
+import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
 import lombok.Getter;
 import lombok.ToString;
 

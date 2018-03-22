@@ -1,6 +1,6 @@
 package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
-import ch.globaz.tmmas.rentesservice.domain.Entity;
+import ch.globaz.tmmas.rentesservice.domain.common.Entity;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

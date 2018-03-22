@@ -12,7 +12,6 @@ import java.util.Optional;
 
 public interface DossierService {
 
-	Dossier sauve(Dossier dossier);
 
 	List<DossierResource> getAll();
 

@@ -27,7 +27,7 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DossierHibernateRepository.class);
 
-	@Transactional
+
 	@Override
 	public Dossier initieDossier(Dossier dossier) {
 
@@ -38,15 +38,15 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 		return dossier;
 	}
 
-	@Transactional
+
 	@Override
-	public List<Dossier> getAll() {
+	public List<Dossier> allDossiers() {
 		return getSession().createQuery("FROM " + Dossier.class.getSimpleName()).list();
 	}
 
-	@Transactional
+
 	@Override
-	public Optional<Dossier> getById(Long dossierId) {
+	public Optional<Dossier> dossierById(Long dossierId) {
 
 		LOGGER.debug("{}#getBiyId, dossierId:{}",this.getClass().getName(),dossierId);
 
@@ -56,7 +56,7 @@ public class DossierHibernateRepository extends HibernateRepository implements D
 
 	}
 
-	@Transactional
+
 	@Override
 	public Dossier validerDossier(Dossier dossier) {
 

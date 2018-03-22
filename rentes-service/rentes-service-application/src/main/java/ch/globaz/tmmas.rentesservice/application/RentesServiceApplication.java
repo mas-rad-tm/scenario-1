@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
  */
 
 @SpringBootApplication
-//@EnableAsync(proxyTargetClass = true)
 @EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
 @ComponentScan(basePackages = {"ch.globaz.tmmas.rentesservice"})
 public class RentesServiceApplication {

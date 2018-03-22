@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.domain;
+package ch.globaz.tmmas.rentesservice.domain.common;
 
 /**
  * Une entité au sens DDD du terme, caractérisé par:

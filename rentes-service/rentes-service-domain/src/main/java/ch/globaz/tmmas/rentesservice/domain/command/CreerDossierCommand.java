@@ -1,7 +1,7 @@
 package ch.globaz.tmmas.rentesservice.domain.command;
 
 
-import ch.globaz.tmmas.rentesservice.domain.ValueObject;
+import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

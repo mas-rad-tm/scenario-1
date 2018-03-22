@@ -10,10 +10,10 @@ public interface DossierRepository {
 	Dossier initieDossier(Dossier dossier);
 
 
-	List<Dossier> getAll();
+	List<Dossier> allDossiers();
 
 
-    Optional<Dossier> getById(Long dossierId);
+    Optional<Dossier> dossierById(Long dossierId);
 
 	Dossier validerDossier(Dossier dossier);
 }

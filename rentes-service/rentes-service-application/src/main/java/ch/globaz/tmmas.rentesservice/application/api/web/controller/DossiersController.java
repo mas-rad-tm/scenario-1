@@ -1,6 +1,7 @@
-package ch.globaz.tmmas.rentesservice.application.api.web;
+package ch.globaz.tmmas.rentesservice.application.api.web.controller;
 
 
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
@@ -8,13 +9,13 @@ import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.hateoas.UriTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,10 +42,10 @@ public class DossiersController {
 	InternalCommandPublisher commandPublisher;
 
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity creerDossier(@Valid @RequestBody CreerDossierCommand command){
 
-		LOGGER.info("creerDossier(), {}",command);
+		LOGGER.info("creerDossier(), command= {}",command);
 
 		commandPublisher.publishCommand(command);
 
@@ -57,10 +58,10 @@ public class DossiersController {
 	}
 
 	@RequestMapping(value = "/{dossierId}/valider", method = RequestMethod.PUT)
-	public ResponseEntity validerDossier(@PathVariable Long dossierId, @RequestBody ValiderDossierCommand
+	public ResponseEntity validerDossier(@PathVariable Long dossierId,@Valid @RequestBody ValiderDossierCommand
 			validerDossierCommand){
 
-		LOGGER.info("validerDossier(), {}",validerDossierCommand);
+		LOGGER.info("validerDossier(), command={}",validerDossierCommand);
 
 		commandPublisher.publishCommand(validerDossierCommand);
 
@@ -75,7 +76,8 @@ public class DossiersController {
 
 		}
 
-		return new ResponseEntity<>("No entity found with id " + dossierId, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " +
+				dossierId), HttpStatus.NOT_FOUND);
 
 	}
 
@@ -90,7 +92,7 @@ public class DossiersController {
 			putSelfLink(resource);
 		});
 
-		return new ResponseEntity<List<DossierResource>>(dossiersResource, HttpStatus.OK);
+		return new ResponseEntity<>(dossiersResource, HttpStatus.OK);
 	}
 
 
@@ -125,7 +127,7 @@ public class DossiersController {
 					.withSelfRel());
 
 		dossierResource.add(linkTo(methodOn(
-				DossiersController.class).validerDossier(dossierResource.getRequerantId(),null))
+				DossiersController.class).validerDossier(dossierResource.getTechnicalId(),null))
 				.withRel("valider"));
 
 

@@ -13,6 +13,8 @@ import org.springframework.hateoas.ResourceSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
+
 @Getter
 public class DossierResource extends ResourceSupport{
 
@@ -38,7 +40,7 @@ public class DossierResource extends ResourceSupport{
 		this.requerantId = requerantId;
 		this.technicalId = id;
 		this.status = status;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
 		this.dateEnregistrement = LocalDate.parse(dateEnregistrement,formatter);
 	}
@@ -47,7 +49,7 @@ public class DossierResource extends ResourceSupport{
 
 	public static DossierResource fromEntity(Dossier dossier){
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 		return new DossierResource(dossier.id(),
 				dossier.identifiant().identifiant(), dossier.requerantId(),
 				dossier.dateEnregistrement().format(formatter), dossier.status());

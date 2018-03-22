@@ -1,8 +1,6 @@
 package ch.globaz.tmmas.rentesservice.domain.event;
 
-import ch.globaz.tmmas.rentesservice.domain.ValueObject;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

@@ -9,8 +9,8 @@ import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,25 +25,22 @@ public class DossierServiceImpl implements DossierService {
 	@Autowired
 	DomainEventPublisher eventPublisher;
 
-	@Override
-	public Dossier sauve(Dossier dossier) {
 
-		return repository.initieDossier(dossier);
-	}
-
+	@Transactional
 	@Override
 	public List<DossierResource> getAll() {
-		List<Dossier> dossiers =  repository.getAll();
+		List<Dossier> dossiers =  repository.allDossiers();
 
 		return dossiers.stream().map(dossier -> {
 			return DossierResource.fromEntity(dossier);
 		}).collect(Collectors.toList());
 	}
 
+	@Transactional
 	@Override
 	public Optional<DossierResource> getById(Long id) {
 
-		Optional<Dossier> dossier = repository.getById(id);
+		Optional<Dossier> dossier = repository.dossierById(id);
 
 		if(dossier.isPresent()){
 			DossierResource dto = DossierResource.fromEntity(dossier.get());
@@ -54,6 +51,7 @@ public class DossierServiceImpl implements DossierService {
 
 	}
 
+	@Transactional
 	@Override
 	public DossierResource creerDossier(CreerDossierCommand command) {
 
@@ -67,10 +65,11 @@ public class DossierServiceImpl implements DossierService {
 
 	}
 
+	@Transactional
 	@Override
 	public Optional<DossierResource> validerDossier(ValiderDossierCommand command, Long dossierId) {
 
-		Optional<Dossier> optionnalDossier = repository.getById(dossierId);
+		Optional<Dossier> optionnalDossier = repository.dossierById(dossierId);
 
 		if(optionnalDossier.isPresent()){
 			Dossier dossier = optionnalDossier.get();

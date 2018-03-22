@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
+
 /**
  * Created by seb on .
  * <p>
@@ -16,7 +18,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
 
-    private static final long serialVersionUID = 1L;
+
+
 
     protected LocalDateDeserializer() {
         super(LocalDate.class);
@@ -26,7 +29,8 @@ public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
     @Override
     public LocalDate deserialize(JsonParser jp, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT
+        );
 
         return LocalDate.parse(jp.readValueAs(String.class),formatter);
     }

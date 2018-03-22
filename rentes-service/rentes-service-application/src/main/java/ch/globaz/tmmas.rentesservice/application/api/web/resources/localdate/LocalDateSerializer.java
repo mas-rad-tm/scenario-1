@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
+
 /**
  * Created by seb on .
  * <p>
@@ -16,7 +18,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class LocalDateSerializer extends StdSerializer<LocalDate> {
 
-    private static final long serialVersionUID = 1L;
 
     public LocalDateSerializer(){
         super(LocalDate.class);
@@ -24,7 +25,7 @@ public class LocalDateSerializer extends StdSerializer<LocalDate> {
 
     @Override
     public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider sp) throws IOException, JsonProcessingException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         gen.writeString(value.format(formatter));
     }
