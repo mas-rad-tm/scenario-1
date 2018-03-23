@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Ressources utilisées pour toutes les exceptions générés au niveau des requêtes REST
+ */
 @Getter
 public class ApiError {
 

@@ -2,6 +2,7 @@ package ch.globaz.tmmas.rentesservice.application.service;
 
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
+import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
@@ -20,4 +21,7 @@ public interface DossierService {
 	DossierResource creerDossier(CreerDossierCommand command);
 
 	Optional<DossierResource> validerDossier(ValiderDossierCommand command, Long dossierId);
+
+	Optional<DossierResource> cloreDossier(CloreDossierCommand command, Long dossierId);
+
 }

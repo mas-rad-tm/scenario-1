@@ -24,11 +24,5 @@ public class SwaggerConfiguration {
 				.build();
 	}
 
-	/**@Bean
-	public ObjectMapper createObjectMapper() {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new JavaTimeModule());
-		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		return mapper;
-	}*/
+
 }

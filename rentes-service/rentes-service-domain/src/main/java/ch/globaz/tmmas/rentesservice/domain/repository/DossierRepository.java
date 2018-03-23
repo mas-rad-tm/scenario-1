@@ -9,11 +9,11 @@ public interface DossierRepository {
 
 	Dossier initieDossier(Dossier dossier);
 
-
 	List<Dossier> allDossiers();
-
 
     Optional<Dossier> dossierById(Long dossierId);
 
 	Dossier validerDossier(Dossier dossier);
+
+	Dossier cloreDossier(Dossier dossier);
 }

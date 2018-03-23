@@ -5,28 +5,28 @@ import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.hateoas.UriTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
-
 import java.util.Optional;
-
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+
+/**
+ * Controlleur pour la gestion des dossiers
+ */
 @RestController
 @RequestMapping("/dossiers")
 public class DossiersController {
@@ -34,6 +34,9 @@ public class DossiersController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DossiersController.class);
 	private static final String DOSSIERS = "/dossiers";
 	private static final String DOSSIER = DOSSIERS + "/{id}";
+	private static final String VALIDER_PATH = "valider";
+	private static final String CLORE_PATH = "clore";
+
 
 	@Autowired
 	DossierService dossierService;
@@ -57,15 +60,40 @@ public class DossiersController {
 
 	}
 
-	@RequestMapping(value = "/{dossierId}/valider", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{dossierId}/valider", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity validerDossier(@PathVariable Long dossierId,@Valid @RequestBody ValiderDossierCommand
 			validerDossierCommand){
 
-		LOGGER.info("validerDossier(), command={}",validerDossierCommand);
+		LOGGER.info("cloreDossier(), command={}",validerDossierCommand);
 
 		commandPublisher.publishCommand(validerDossierCommand);
 
 		Optional<DossierResource> optionnalDossier = dossierService.validerDossier(validerDossierCommand,dossierId);
+
+		if(optionnalDossier.isPresent()){
+
+			DossierResource dossierResource = optionnalDossier.get();
+			putSelfLink(dossierResource);
+
+			return new ResponseEntity<>(dossierResource,  HttpStatus.OK);
+
+		}
+
+		return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " +
+				dossierId), HttpStatus.NOT_FOUND);
+
+	}
+
+
+	@RequestMapping(value = "/{dossierId}/clore", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity cloreDossier(@PathVariable Long dossierId,@Valid @RequestBody CloreDossierCommand
+			cloreDossierCommand){
+
+		LOGGER.info("cloreDossier(), command={}",cloreDossierCommand);
+
+		commandPublisher.publishCommand(cloreDossierCommand);
+
+		Optional<DossierResource> optionnalDossier = dossierService.cloreDossier(cloreDossierCommand,dossierId);
 
 		if(optionnalDossier.isPresent()){
 
@@ -96,7 +124,7 @@ public class DossiersController {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{dossierId}")
+	@RequestMapping(value = "/{dossierId}", method = RequestMethod.GET)
 	public ResponseEntity dossierById(@PathVariable Long dossierId){
 
 		LOGGER.debug("dossierById(), {}",dossierId);
@@ -128,7 +156,7 @@ public class DossiersController {
 
 		dossierResource.add(linkTo(methodOn(
 				DossiersController.class).validerDossier(dossierResource.getTechnicalId(),null))
-				.withRel("valider"));
+				.withRel(VALIDER_PATH));
 
 
 		return dossierResource;

@@ -2,6 +2,8 @@ package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
 import ch.globaz.tmmas.rentesservice.domain.common.Entity;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
+import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateValidationPlusRecenteDateEnregistrement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,7 +20,8 @@ public class Dossier implements Entity<Dossier> {
 
     private DossierId identifiant;
     private LocalDate dateEnregistrement;
-    private LocalDate dateTraitement;
+    private LocalDate dateValidation;
+    private LocalDate dateCloture;
     private Long requerantId;
     private DossierStatus status;
 
@@ -58,9 +61,19 @@ public class Dossier implements Entity<Dossier> {
         return new Dossier(command.getDateEnregistrement(),command.getRequerantId());
     }
 
-    public Dossier traiterDossier(LocalDate dateTraitement){
-        this.status = DossierStatus.VALIDE;
-        this.dateTraitement = dateTraitement;
+    public Dossier validerDossier(DateValidationPlusRecenteDateEnregistrement specification){
+
+        if(specification.isSatisfiedBy(this)){
+            this.status = DossierStatus.VALIDE;
+            this.dateValidation = specification.getDateValidation();
+        }
+
+        return this;
+    }
+
+    public Dossier cloreDossier(LocalDate dateCloture){
+        this.status = DossierStatus.CLOT;
+        this.dateCloture = dateCloture;
         return this;
     }
 

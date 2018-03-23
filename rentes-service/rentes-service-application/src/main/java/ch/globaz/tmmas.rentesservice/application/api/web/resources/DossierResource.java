@@ -15,6 +15,9 @@ import java.time.format.DateTimeFormatter;
 
 import static ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
 
+/**
+ * Ressources REST pour les dossiers
+ */
 @Getter
 public class DossierResource extends ResourceSupport{
 

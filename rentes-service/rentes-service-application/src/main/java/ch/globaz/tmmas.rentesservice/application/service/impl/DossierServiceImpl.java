@@ -3,10 +3,12 @@ package ch.globaz.tmmas.rentesservice.application.service.impl;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.impl.DomainEventPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateValidationPlusRecenteDateEnregistrement;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -73,7 +75,9 @@ public class DossierServiceImpl implements DossierService {
 
 		if(optionnalDossier.isPresent()){
 			Dossier dossier = optionnalDossier.get();
-			dossier.traiterDossier(command.getDateValidation());
+			dossier.validerDossier(
+					new DateValidationPlusRecenteDateEnregistrement(dossier,command.getDateValidation()));
+
 
 			repository.validerDossier(dossier);
 
@@ -83,6 +87,25 @@ public class DossierServiceImpl implements DossierService {
 			return Optional.ofNullable(null);
 		}
 
+	}
+
+	@Transactional
+	@Override
+	public Optional<DossierResource> cloreDossier(CloreDossierCommand command, Long dossierId) {
+
+		Optional<Dossier> optionnalDossier = repository.dossierById(dossierId);
+
+		if(optionnalDossier.isPresent()){
+			Dossier dossier = optionnalDossier.get();
+			dossier.cloreDossier(command.getDateCloture());
+
+			repository.cloreDossier(dossier);
+
+			DossierResource dto = DossierResource.fromEntity(dossier);
+			return Optional.of(dto);
+		}else{
+			return Optional.ofNullable(null);
+		}
 	}
 
 
