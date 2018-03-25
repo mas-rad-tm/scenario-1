@@ -61,14 +61,12 @@ public class Dossier implements Entity<Dossier> {
         return new Dossier(command.getDateEnregistrement(),command.getRequerantId());
     }
 
-    public Dossier validerDossier(DateValidationPlusRecenteDateEnregistrement specification){
+    public Dossier validerDossier(LocalDate dateValidation){
 
-        if(specification.isSatisfiedBy(this)){
-            this.status = DossierStatus.VALIDE;
-            this.dateValidation = specification.getDateValidation();
-        }
-
+        this.status = DossierStatus.VALIDE;
+        this.dateValidation = dateValidation;
         return this;
+
     }
 
     public Dossier cloreDossier(LocalDate dateCloture){

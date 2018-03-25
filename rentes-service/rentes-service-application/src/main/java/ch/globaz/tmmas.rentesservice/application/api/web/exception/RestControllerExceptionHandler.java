@@ -1,6 +1,7 @@
 package ch.globaz.tmmas.rentesservice.application.api.web.exception;
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
+import ch.globaz.tmmas.rentesservice.application.service.impl.RegleMetiersNonSatisfaite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -48,5 +49,6 @@ public class RestControllerExceptionHandler extends ResponseEntityExceptionHandl
 
         return handleExceptionInternal(ex, apiError, headers, apiError.getStatus(), request);
     }
+
 
 }

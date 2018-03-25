@@ -6,9 +6,12 @@ import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateValidationPlusRecenteDateEnregistrement;
+import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.StatusDossierCorrespond;
 import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -75,14 +78,20 @@ public class DossierServiceImpl implements DossierService {
 
 		if(optionnalDossier.isPresent()){
 			Dossier dossier = optionnalDossier.get();
-			dossier.validerDossier(
-					new DateValidationPlusRecenteDateEnregistrement(dossier,command.getDateValidation()));
+
+			Specification spec = new DateValidationPlusRecenteDateEnregistrement(command.getDateValidation())
+					.and(new StatusDossierCorrespond(DossierStatus.INITIE));
 
 
-			repository.validerDossier(dossier);
+			if(spec.isSatisfiedBy(dossier)){
+				dossier.validerDossier(command.getDateValidation());
+				repository.validerDossier(dossier);
+				DossierResource dto = DossierResource.fromEntity(dossier);
+				return Optional.of(dto);
+			}else{
+				throw new RegleMetiersNonSatisfaite("yep....");
+			}
 
-			DossierResource dto = DossierResource.fromEntity(dossier);
-			return Optional.of(dto);
 		}else{
 			return Optional.ofNullable(null);
 		}

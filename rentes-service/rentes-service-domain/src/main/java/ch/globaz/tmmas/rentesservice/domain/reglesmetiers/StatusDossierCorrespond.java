@@ -2,24 +2,26 @@ package ch.globaz.tmmas.rentesservice.domain.reglesmetiers;
 
 import ch.globaz.tmmas.rentesservice.domain.common.specification.AbstractSpecification;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Getter
-public class DateValidationPlusRecenteDateEnregistrement extends AbstractSpecification<Dossier> {
+public class StatusDossierCorrespond extends AbstractSpecification<Dossier> {
 
 
-    private LocalDate dateValidation;
+    private DossierStatus status;
 
-    public DateValidationPlusRecenteDateEnregistrement(LocalDate dateValidation) {
-         this.dateValidation = dateValidation;
+    public StatusDossierCorrespond(DossierStatus status) {
+
+        this.status = status;
     }
 
     @Override
     public boolean isSatisfiedBy(Dossier dossier) {
 
-        return (dossier.dateEnregistrement().isBefore(dateValidation));
+        return dossier.status().equals(status);
 
     }
 }

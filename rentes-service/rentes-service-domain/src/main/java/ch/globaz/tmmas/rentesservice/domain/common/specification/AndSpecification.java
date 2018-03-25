@@ -25,4 +25,6 @@ public class AndSpecification<T> extends AbstractSpecification<T> {
   public boolean isSatisfiedBy(final T t) {
     return spec1.isSatisfiedBy(t) && spec2.isSatisfiedBy(t);
   }
+
+
 }
