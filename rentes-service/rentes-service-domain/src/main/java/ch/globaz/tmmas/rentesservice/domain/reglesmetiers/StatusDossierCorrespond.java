@@ -29,6 +29,6 @@ public class StatusDossierCorrespond extends AbstractSpecification<Dossier> {
 
     @Override
     public List<String> getDescriptionReglesMetier() {
-        return Arrays.asList("saSDASD");
+        return Arrays.asList("Le status doit être dans l'état " + status.name());
     }
 }

@@ -28,6 +28,6 @@ public class DateValidationPlusRecenteDateEnregistrement extends AbstractSpecifi
 
     @Override
     public List<String> getDescriptionReglesMetier() {
-        return Arrays.asList("ok");
+        return Arrays.asList("La date de validation doit être plus récente que la date d'enregistrement");
     }
 }
