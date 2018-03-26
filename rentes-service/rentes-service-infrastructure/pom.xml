@@ -30,6 +30,12 @@
             <artifactId>rentes-service-domain</artifactId>
         </dependency>
 
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- persistance -->
         <dependency>
             <groupId>com.ibm.db2.jcc</groupId>
