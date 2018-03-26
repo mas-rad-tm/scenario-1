@@ -17,6 +17,7 @@
         <module>rentes-service-application</module>
         <module>rentes-service-infrastructure</module>
         <module>rentes-service-domain</module>
+        <module>rentes-service-api</module>
     </modules>
 
     <!-- ****** Propriétés ****** -->

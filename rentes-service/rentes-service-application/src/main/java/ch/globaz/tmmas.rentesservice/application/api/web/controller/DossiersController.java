@@ -158,6 +158,10 @@ public class DossiersController {
 				DossiersController.class).validerDossier(dossierResource.getTechnicalId(),null))
 				.withRel(VALIDER_PATH));
 
+		dossierResource.add(linkTo(methodOn(
+				DossiersController.class).cloreDossier(dossierResource.getTechnicalId(),null))
+				.withRel(CLORE_PATH));
+
 
 		return dossierResource;
 	}
