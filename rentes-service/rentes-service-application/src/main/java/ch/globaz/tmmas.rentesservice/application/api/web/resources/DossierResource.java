@@ -148,15 +148,13 @@ public class DossierResource extends ResourceSupport{
 			return this;
 		}
 		public DossierResourceBuilder dateCloture(LocalDate dateCloture){
-			this.dateValidation = dateCloture;
+			this.dateCloture = dateCloture;
 			return this;
 		}
 
 		public DossierResource build () {
 			return new DossierResource(this);
 		}
-
-
 
 	}
 }

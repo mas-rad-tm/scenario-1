@@ -34,10 +34,8 @@ public class AndSpecification<T> extends AbstractSpecification<T> {
   public List<String> getDescriptionReglesMetier() {
     List<String> regles = new ArrayList<>(spec1.getDescriptionReglesMetier());
 
-    spec2.getDescriptionReglesMetier().forEach(regle -> {
-        regles.add(regle);
-        //regles.add(regle);
-    });
+    //regles.add(regle);
+    spec2.getDescriptionReglesMetier().forEach(regles::add);
 
 
     return regles;

@@ -29,7 +29,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 @RestController
 @RequestMapping("/dossiers")
-public class DossiersController {
+class DossiersController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DossiersController.class);
 	private static final String DOSSIERS = "/dossiers";
@@ -116,9 +116,7 @@ public class DossiersController {
 
 		List<DossierResource> dossiersResource = dossierService.getAll();
 
-		dossiersResource.stream().forEach(resource -> {
-			putSelfLink(resource);
-		});
+		dossiersResource.stream().forEach(this::putSelfLink);
 
 		return new ResponseEntity<>(dossiersResource, HttpStatus.OK);
 	}
@@ -129,6 +127,17 @@ public class DossiersController {
 
 		LOGGER.debug("dossierById(), {}",dossierId);
 
+
+		return dossierService.getById(dossierId)
+				.map(dossier -> {
+
+					putSelfLink(dossier);
+					LOGGER.debug("getDossierById() return  {}",dossier);
+					return new ResponseEntity<>(dossier, HttpStatus.OK);
+
+				}).orElseGet(() -> new ResponseEntity(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " + dossierId)
+                , HttpStatus.NOT_FOUND));
+/*
 		Optional<DossierResource> optionnalDossier = dossierService.getById(dossierId);
 
 		if(optionnalDossier.isPresent()){
@@ -145,7 +154,7 @@ public class DossiersController {
 
 		return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " + dossierId)
 				, HttpStatus.NOT_FOUND);
-
+*/
 
 	}
 

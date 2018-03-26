@@ -79,9 +79,7 @@ public class RentesServiceApplication {
 		LOGGER.info("*                     *** Static location paths ***                   *");
 		LOGGER.info("***********************************************************************");
 
-		Arrays.asList(staticLocation).forEach(location -> {
-			LOGGER.info("* {}",location);
-		});
+		Arrays.asList(staticLocation).forEach(location -> LOGGER.info("* {}",location));
 		LOGGER.info("***********************************************************************");
 
 

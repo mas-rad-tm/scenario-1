@@ -12,7 +12,7 @@ import java.util.UUID;
  * pour toutes les requêtes entrantes.
  */
 @Component
-public class MDCRequestFilter implements Filter{
+class MDCRequestFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {}

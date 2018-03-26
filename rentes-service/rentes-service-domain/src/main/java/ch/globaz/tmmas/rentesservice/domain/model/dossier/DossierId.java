@@ -18,7 +18,7 @@ public class DossierId implements ValueObject<DossierId>{
     @NotNull(message = "L'identifiant ne peut pas être null")
     private String identifiant;
 
-    public DossierId(String identifiant) {
+    private DossierId(String identifiant) {
         this.identifiant = identifiant;
     }
 

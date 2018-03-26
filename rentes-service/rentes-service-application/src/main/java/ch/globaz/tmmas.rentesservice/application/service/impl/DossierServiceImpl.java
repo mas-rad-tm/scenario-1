@@ -39,13 +39,9 @@ public class DossierServiceImpl implements DossierService {
 	public List<DossierResource> getAll() {
 		List<Dossier> dossiers =  repository.allDossiers();
 
-		return dossiers.stream().map(dossier -> {
-
-			return new DossierResource.DossierResourceBuilder(dossier)
-					.dateValidation(dossier.getDateValidation())
-					.dateCloture(dossier.getDateCloture()).build();
-
-		}).collect(Collectors.toList());
+		return dossiers.stream().map(dossier -> new DossierResource.DossierResourceBuilder(dossier)
+                .dateValidation(dossier.getDateValidation())
+                .dateCloture(dossier.getDateCloture()).build()).collect(Collectors.toList());
 
 	}
 
@@ -61,7 +57,7 @@ public class DossierServiceImpl implements DossierService {
 
 		 	return Optional.of(res);
 
-		}).orElseGet(()-> Optional.empty());
+		}).orElseGet(Optional::empty);
 
 	}
 
@@ -103,7 +99,7 @@ public class DossierServiceImpl implements DossierService {
 
 			return Optional.of(dto);
 
-		}).orElseGet(()-> Optional.empty());
+		}).orElseGet(Optional::empty);
 
 
 	}
@@ -134,7 +130,7 @@ public class DossierServiceImpl implements DossierService {
 
 			return Optional.of(dto);
 
-		}).orElseGet(() -> Optional.empty());
+		}).orElseGet(Optional::empty);
 
 	}
 

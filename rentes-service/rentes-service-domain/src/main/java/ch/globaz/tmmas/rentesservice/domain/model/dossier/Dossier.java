@@ -2,14 +2,12 @@ package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
 import ch.globaz.tmmas.rentesservice.domain.common.Entity;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
-import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateValidationPlusRecenteDateEnregistrement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 @ToString
 @EqualsAndHashCode

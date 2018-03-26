@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class HibernateRepository {
+abstract class HibernateRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -15,7 +15,7 @@ public abstract class HibernateRepository {
 		this.sessionFactory = sessionFactory;
 	}
 
-	protected Session getSession() {
+	Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 

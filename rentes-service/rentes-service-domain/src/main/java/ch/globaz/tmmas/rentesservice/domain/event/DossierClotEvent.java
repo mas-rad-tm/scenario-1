@@ -23,7 +23,7 @@ public class DossierClotEvent implements DomainEvent {
     private String status;
     private Long id;
 
-    public DossierClotEvent(Long id, String identifiant, String dateEnregistrement, Long requerantId, String status) {
+    DossierClotEvent(Long id, String identifiant, String dateEnregistrement, Long requerantId, String status) {
         this.identifiant = identifiant;
         this.dateEnregistrement = dateEnregistrement;
         this.requerantId = requerantId;

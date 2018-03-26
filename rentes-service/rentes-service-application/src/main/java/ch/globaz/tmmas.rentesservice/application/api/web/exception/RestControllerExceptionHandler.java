@@ -19,7 +19,7 @@ import java.util.List;
  * Classe gérant les diverses exceptions pouvant être généré lors du traitement de la requête REST
  */
 @ControllerAdvice
-public class RestControllerExceptionHandler extends ResponseEntityExceptionHandler{
+class RestControllerExceptionHandler extends ResponseEntityExceptionHandler{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestControllerExceptionHandler.class);
 
@@ -37,13 +37,9 @@ public class RestControllerExceptionHandler extends ResponseEntityExceptionHandl
 
         final List<String> erreurs = new ArrayList<String>();
 
-        ex.getBindingResult().getFieldErrors().forEach(erreur -> {
-            erreurs.add(erreur.getField() + ": " + erreur.getDefaultMessage());
-        });
+        ex.getBindingResult().getFieldErrors().forEach(erreur -> erreurs.add(erreur.getField() + ": " + erreur.getDefaultMessage()));
 
-        ex.getBindingResult().getGlobalErrors().forEach(erreur -> {
-            erreurs.add(erreur.getObjectName() + ": " + erreur.getDefaultMessage());
-        });
+        ex.getBindingResult().getGlobalErrors().forEach(erreur -> erreurs.add(erreur.getObjectName() + ": " + erreur.getDefaultMessage()));
 
         final ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), erreurs);
 

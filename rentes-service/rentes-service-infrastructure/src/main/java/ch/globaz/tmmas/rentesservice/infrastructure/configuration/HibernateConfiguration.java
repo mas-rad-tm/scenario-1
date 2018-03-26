@@ -73,7 +73,7 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "ch.globaz.tmmas.rentesservice" });
+		sessionFactory.setPackagesToScan("ch.globaz.tmmas.rentesservice");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		sessionFactory.setConfigLocation(new ClassPathResource("hibernate.cfg.xml"));

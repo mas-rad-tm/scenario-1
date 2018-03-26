@@ -7,7 +7,7 @@ import org.springframework.core.task.TaskDecorator;
 import java.util.Map;
 
 
-public class MdcTaskDecorator implements TaskDecorator {
+class MdcTaskDecorator implements TaskDecorator {
 
 	@Override
 	public Runnable decorate(Runnable runnable) {

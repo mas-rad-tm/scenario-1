@@ -14,7 +14,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DossiersEventListener {
+class DossiersEventListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DossiersEventListener.class);
 

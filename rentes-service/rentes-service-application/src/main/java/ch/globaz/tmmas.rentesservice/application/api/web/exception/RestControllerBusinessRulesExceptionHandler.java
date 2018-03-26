@@ -21,7 +21,7 @@ import java.util.List;
  * Classe gérant les diverses exceptions pouvant être généré lors du traitement de la requête REST
  */
 @ControllerAdvice
-public class RestControllerBusinessRulesExceptionHandler {
+class RestControllerBusinessRulesExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestControllerBusinessRulesExceptionHandler.class);
 

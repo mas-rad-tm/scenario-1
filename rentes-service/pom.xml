@@ -43,6 +43,7 @@
         <maven-war.plugin.version>3.2.0</maven-war.plugin.version>
         <maven-source.plugin>3.0.1</maven-source.plugin>
         <maven.help.version>2.2</maven.help.version>
+        <jgitflow-plugin.version>1.0-m5.1</jgitflow-plugin.version>
 
         <!-- propriétés diverses -->
         <application.packaging.type>war</application.packaging.type>
@@ -308,6 +309,21 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
 
     </dependencies>
 
@@ -334,6 +350,20 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <!-- jgitflow
+                doc: https://bitbucket.org/atlassian/jgit-flow/wiki/Home
+                repo : https://mvnrepository.com/artifact/external.atlassian.jgitflow/jgitflow-maven-plugin
+                -->
+                <plugin>
+                    <groupId>external.atlassian.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>${jgitflow-plugin.version}</version>
+                    <configuration>
+                        <!-- see goals wiki page for configuration options -->
+                    </configuration>
+                </plugin>
+
 
                 <!-- maven war plugin
                 repo: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin
