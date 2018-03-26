@@ -62,24 +62,5 @@
             <artifactId>tomcat-jdbc</artifactId>
         </dependency>
 
-<<<<<<< HEAD
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
-        </dependency>
-        -->
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.globaz.tmmas</groupId>
-            <artifactId>rentes-service-domain</artifactId>
-        </dependency>
-
-=======
->>>>>>> 3c22498ab96d09c1c62783cc741f8265b1a6a9a5
     </dependencies>
 </project>
