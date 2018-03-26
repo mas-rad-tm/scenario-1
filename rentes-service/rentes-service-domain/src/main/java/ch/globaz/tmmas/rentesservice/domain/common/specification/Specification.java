@@ -1,5 +1,7 @@
 package ch.globaz.tmmas.rentesservice.domain.common.specification;
 
+import java.util.List;
+
 /**
  * Specificaiton interface.
  * <p/>
@@ -15,6 +17,10 @@ public interface Specification<T> {
    * @return {@code true} if {@code t} satisfies the specification.
    */
   boolean isSatisfiedBy(T t);
+
+
+
+  List<String> getDescriptionReglesMetier();
 
 
 

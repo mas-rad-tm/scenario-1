@@ -89,7 +89,7 @@ public class DossierServiceImpl implements DossierService {
 				DossierResource dto = DossierResource.fromEntity(dossier);
 				return Optional.of(dto);
 			}else{
-				throw new RegleMetiersNonSatisfaite("yep....");
+				throw new RegleMetiersNonSatisfaite(spec.getDescriptionReglesMetier());
 			}
 
 		}else{

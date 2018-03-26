@@ -29,9 +29,12 @@ public class RestControllerBusinessRulesExceptionHandler {
 
     @ExceptionHandler(RegleMetiersNonSatisfaite.class)
     protected ResponseEntity<Object> handleReglesMetiersException(RegleMetiersNonSatisfaite ex){
+
+        ApiError errors = new ApiError(HttpStatus.CONFLICT,ex.getMessage(),ex.getReglesMetiersNonStaisfaite());
+
         return ResponseEntity
                 .badRequest()
-                .body("Invalid Input");
+                .body(errors);
     }
 
 }

@@ -1,5 +1,7 @@
 package ch.globaz.tmmas.rentesservice.domain.common.specification;
 
+import java.util.List;
+
 /**
  * NOT decorator, used to create a new specifcation that is the inverse (NOT) of the given spec.
  */
@@ -22,4 +24,9 @@ public class NotSpecification<T> extends AbstractSpecification<T> {
   public boolean isSatisfiedBy(final T t) {
     return !spec1.isSatisfiedBy(t);
   }
+
+    @Override
+    public List<String> getDescriptionReglesMetier() {
+        return spec1.getDescriptionReglesMetier();
+    }
 }

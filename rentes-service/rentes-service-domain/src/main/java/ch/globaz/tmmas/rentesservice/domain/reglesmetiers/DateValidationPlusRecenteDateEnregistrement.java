@@ -5,6 +5,9 @@ import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Getter
 public class DateValidationPlusRecenteDateEnregistrement extends AbstractSpecification<Dossier> {
@@ -21,5 +24,10 @@ public class DateValidationPlusRecenteDateEnregistrement extends AbstractSpecifi
 
         return (dossier.dateEnregistrement().isBefore(dateValidation));
 
+    }
+
+    @Override
+    public List<String> getDescriptionReglesMetier() {
+        return Arrays.asList("ok");
     }
 }

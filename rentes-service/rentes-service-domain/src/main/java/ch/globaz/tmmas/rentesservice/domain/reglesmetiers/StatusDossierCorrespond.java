@@ -6,6 +6,8 @@ import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @Getter
 public class StatusDossierCorrespond extends AbstractSpecification<Dossier> {
@@ -23,5 +25,10 @@ public class StatusDossierCorrespond extends AbstractSpecification<Dossier> {
 
         return dossier.status().equals(status);
 
+    }
+
+    @Override
+    public List<String> getDescriptionReglesMetier() {
+        return Arrays.asList("saSDASD");
     }
 }

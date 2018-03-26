@@ -1,5 +1,9 @@
 package ch.globaz.tmmas.rentesservice.domain.common.specification;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * AND specification, used to create a new specifcation that is the AND of two other specifications.
  */
@@ -24,6 +28,19 @@ public class AndSpecification<T> extends AbstractSpecification<T> {
    */
   public boolean isSatisfiedBy(final T t) {
     return spec1.isSatisfiedBy(t) && spec2.isSatisfiedBy(t);
+  }
+
+  @Override
+  public List<String> getDescriptionReglesMetier() {
+    List<String> regles = new ArrayList<>(spec1.getDescriptionReglesMetier());
+
+    spec2.getDescriptionReglesMetier().forEach(regle -> {
+        regles.add(regle);
+        //regles.add(regle);
+    });
+
+
+    return regles;
   }
 
 

@@ -1,5 +1,8 @@
 package ch.globaz.tmmas.rentesservice.domain.common.specification;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * OR specification, used to create a new specifcation that is the OR of two other specifications.
  */
@@ -24,5 +27,15 @@ public class OrSpecification<T> extends AbstractSpecification<T> {
    */
   public boolean isSatisfiedBy(final T t) {
     return spec1.isSatisfiedBy(t) || spec2.isSatisfiedBy(t);
+  }
+
+  @Override
+  public List<String> getDescriptionReglesMetier() {
+
+    List<String> regles = spec1.getDescriptionReglesMetier();
+
+    regles.addAll(spec2.getDescriptionReglesMetier());
+
+    return regles;
   }
 }
