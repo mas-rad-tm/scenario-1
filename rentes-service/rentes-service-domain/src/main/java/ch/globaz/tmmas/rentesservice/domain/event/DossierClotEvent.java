@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @EqualsAndHashCode
 @ToString
 @Getter
-public class DossierCreeEvent implements DomainEvent {
+public class DossierClotEvent implements DomainEvent {
 
     private final static DateTimeFormatter formatter
             = DateTimeFormatter.ofPattern(GlobalParamers.DATE_FORMATTER_PATTER.value);
@@ -23,7 +23,7 @@ public class DossierCreeEvent implements DomainEvent {
     private String status;
     private Long id;
 
-    public DossierCreeEvent(Long id,String identifiant, String dateEnregistrement, Long requerantId, String status) {
+    public DossierClotEvent(Long id, String identifiant, String dateEnregistrement, Long requerantId, String status) {
         this.identifiant = identifiant;
         this.dateEnregistrement = dateEnregistrement;
         this.requerantId = requerantId;
@@ -31,15 +31,16 @@ public class DossierCreeEvent implements DomainEvent {
         this.id = id;
     }
 
-    public DossierCreeEvent(){}
+    public DossierClotEvent(){}
 
 
 
-    public static DossierCreeEvent fromEntity(Dossier dossier) {
-        return new DossierCreeEvent(dossier.getId(),
+    public static DossierClotEvent fromEntity(Dossier dossier) {
+        return new DossierClotEvent(dossier.getId(),
                 dossier.getIdentifiant().identifiant(),
-                dossier.getDateEnregistrement().format(formatter),
-                dossier.requerantId(),
+                dossier.getDateCloture().format(formatter),
+                dossier
+                .requerantId(),
                 dossier.status().toString());
     }
 

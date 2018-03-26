@@ -143,7 +143,8 @@ public class DossiersController {
 		}
 
 
-		return new ResponseEntity<>("No entity found with id " + dossierId, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " + dossierId)
+				, HttpStatus.NOT_FOUND);
 
 
 	}

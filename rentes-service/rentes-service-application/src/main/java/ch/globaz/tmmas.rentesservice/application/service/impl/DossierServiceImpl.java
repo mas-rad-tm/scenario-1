@@ -7,7 +7,9 @@ import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
+import ch.globaz.tmmas.rentesservice.domain.event.DossierClotEvent;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
+import ch.globaz.tmmas.rentesservice.domain.event.DossierValideeEvent;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateCloturePlusRecenteDateValidation;
@@ -51,19 +53,15 @@ public class DossierServiceImpl implements DossierService {
 	@Override
 	public Optional<DossierResource> getById(Long id) {
 
-		Optional<Dossier> optionnalDossier = repository.dossierById(id);
+		 return repository.dossierById(id).map(dossier -> {
 
-		if(optionnalDossier.isPresent()){
-			Dossier dossier = optionnalDossier.get();
-
-			DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+		 	DossierResource res =  new DossierResource.DossierResourceBuilder(dossier)
 					.dateValidation(dossier.getDateValidation())
 					.dateCloture(dossier.getDateCloture()).build();
 
-			return Optional.of(dto);
-		}else{
-			return Optional.ofNullable(null);
-		}
+		 	return Optional.of(res);
+
+		}).orElseGet(()-> Optional.empty());
 
 	}
 
@@ -85,30 +83,28 @@ public class DossierServiceImpl implements DossierService {
 	@Override
 	public Optional<DossierResource> validerDossier(ValiderDossierCommand command, Long dossierId) {
 
-		Optional<Dossier> optionnalDossier = repository.dossierById(dossierId);
+		Specification spec = new DateValidationPlusRecenteDateEnregistrement(command.getDateValidation())
+				.and(new StatusDossierCorrespond(DossierStatus.INITIE));
 
-		if(optionnalDossier.isPresent()){
-			Dossier dossier = optionnalDossier.get();
+		return repository.dossierById(dossierId).map(dossier -> {
 
-			Specification spec = new DateValidationPlusRecenteDateEnregistrement(command.getDateValidation())
-					.and(new StatusDossierCorrespond(DossierStatus.INITIE));
-
-
-			if(spec.isSatisfiedBy(dossier)){
-				dossier.validerDossier(command.getDateValidation());
-				repository.validerDossier(dossier);
-
-				DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
-						.dateValidation(command.getDateValidation()).build();
-
-				return Optional.of(dto);
-			}else{
-				throw new RegleMetiersNonSatisfaite(spec.getDescriptionReglesMetier());
+			if(!spec.isSatisfiedBy(dossier)){
+				throw new RegleMetiersNonSatisfaite(spec);
 			}
 
-		}else{
-			return Optional.ofNullable(null);
-		}
+			dossier.validerDossier(command.getDateValidation());
+
+			repository.validerDossier(dossier);
+
+			eventPublisher.publishEvent(DossierValideeEvent.fromEntity(dossier));
+
+			DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+					.dateValidation(command.getDateValidation()).build();
+
+			return Optional.of(dto);
+
+		}).orElseGet(()-> Optional.empty());
+
 
 	}
 
@@ -116,31 +112,34 @@ public class DossierServiceImpl implements DossierService {
 	@Override
 	public Optional<DossierResource> cloreDossier(CloreDossierCommand command, Long dossierId) {
 
-		Optional<Dossier> optionnalDossier = repository.dossierById(dossierId);
+		Specification spec = new DateCloturePlusRecenteDateValidation(command.getDateCloture())
+				.and(new StatusDossierCorrespond(DossierStatus.VALIDE));
 
-		if(optionnalDossier.isPresent()){
-			Dossier dossier = optionnalDossier.get();
 
-			Specification spec = new DateCloturePlusRecenteDateValidation(command.getDateCloture())
-					.and(new StatusDossierCorrespond(DossierStatus.VALIDE));
+		return repository.dossierById(dossierId).map(dossier -> {
 
-			if(spec.isSatisfiedBy(dossier)){
-				dossier.cloreDossier(command.getDateCloture());
-				repository.cloreDossier(dossier);
-
-				DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
-						.dateValidation(dossier.getDateValidation())
-						.dateCloture(command.getDateCloture()).build();
-
-				return Optional.of(dto);
-			}else{
-				throw new RegleMetiersNonSatisfaite(spec.getDescriptionReglesMetier());
+			if(!spec.isSatisfiedBy(dossier)){
+				throw new RegleMetiersNonSatisfaite(spec);
 			}
 
-		}else{
-			return Optional.ofNullable(null);
-		}
+			dossier.cloreDossier(command.getDateCloture());
+
+			repository.cloreDossier(dossier);
+
+			eventPublisher.publishEvent(DossierClotEvent.fromEntity(dossier));
+
+			DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+					.dateValidation(dossier.getDateValidation())
+					.dateCloture(command.getDateCloture()).build();
+
+			return Optional.of(dto);
+
+		}).orElseGet(() -> Optional.empty());
+
 	}
+
+
+
 
 
 }

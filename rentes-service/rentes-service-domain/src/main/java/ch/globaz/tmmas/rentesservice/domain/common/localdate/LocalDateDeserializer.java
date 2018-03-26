@@ -1,5 +1,6 @@
 package ch.globaz.tmmas.rentesservice.domain.common.localdate;
 
+import ch.globaz.tmmas.rentesservice.domain.common.GlobalParamers;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -16,7 +17,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
 
-    private static final long serialVersionUID = 1L;
+    private final static DateTimeFormatter formatter
+            = DateTimeFormatter.ofPattern(GlobalParamers.DATE_FORMATTER_PATTER.value);
+
 
     protected LocalDateDeserializer() {
         super(LocalDate.class);
@@ -26,7 +29,6 @@ public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
     @Override
     public LocalDate deserialize(JsonParser jp, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         return LocalDate.parse(jp.readValueAs(String.class),formatter);
     }

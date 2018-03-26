@@ -32,7 +32,6 @@ import java.util.stream.Collectors;
 public class RentesServiceApplication {
 
 
-
 	private final Environment env;
 	private static final Logger LOGGER = LoggerFactory.getLogger(RentesServiceApplication.class);
 
@@ -47,7 +46,6 @@ public class RentesServiceApplication {
 	public static void main(String []args)  {
 
 		SpringApplication app = new SpringApplication(RentesServiceApplication.class);
-		//DefaultProfileUtil.setDevelopmentProfile(app);
 
 		Environment env = app.run(args).getEnvironment();
 
