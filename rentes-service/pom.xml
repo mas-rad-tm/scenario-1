@@ -9,7 +9,8 @@
     <groupId>ch.globaz.tmmas</groupId>
     <artifactId>rentes-service</artifactId>
     <packaging>pom</packaging>
-    <description>Module parent pour le backend de référence</description>
+    <description>Module parent pour le service des rentes</description>
+    <name>rentes-service</name>
     <version>1.0.0-SNAPSHOT</version>
 
     <!-- ****** Modules applicatifs ****** -->
@@ -17,17 +18,14 @@
         <module>rentes-service-application</module>
         <module>rentes-service-infrastructure</module>
         <module>rentes-service-domain</module>
-        <module>rentes-service-api</module>
     </modules>
 
     <!-- ****** Propriétés ****** -->
     <properties>
+
+        <!-- dépendances -->
         <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
         <spring.version>4.3.14.RELEASE</spring.version>
-        <maven-war.plugin.version>3.2.0</maven-war.plugin.version>
-        <maven-source.plugin>3.0.1</maven-source.plugin>
-        <application.packaging.type>war</application.packaging.type>
-        <maven.help.version>2.2</maven.help.version>
         <logback.version>1.2.3</logback.version>
         <logback.encoder.version>4.11</logback.encoder.version>
         <hibernate.version>5.2.12.Final</hibernate.version>
@@ -35,27 +33,24 @@
         <tomcat.jdbc.version>9.0.2</tomcat.jdbc.version>
         <junit.version>4.12</junit.version>
         <assertJ.version>3.9.0</assertJ.version>
-        <swagger.version>2.6.1</swagger.version>
+        <swagger.version>2.8.0</swagger.version>
         <lombok.version>1.16.20</lombok.version>
-        <project.build.encoding>UTF-8</project.build.encoding>
         <h2.driver.version>1.4.196</h2.driver.version>
-
         <faker.version>0.14</faker.version>
+
+        <!-- dépendances de build et maven plugin -->
+        <maven-compiler.version>3.7.0</maven-compiler.version>
+        <maven-war.plugin.version>3.2.0</maven-war.plugin.version>
+        <maven-source.plugin>3.0.1</maven-source.plugin>
+        <maven.help.version>2.2</maven.help.version>
+
+        <!-- propriétés diverses -->
+        <application.packaging.type>war</application.packaging.type>
+        <project.build.encoding>UTF-8</project.build.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     </properties>
 
-    <!-- ****** Profils maven ****** -->
-    <profiles>
-
-        <!-- pour la gestion de l'artefact ibm db2 -->
-        <profile>
-            <id>globaz</id>
-            <properties>
-                <db2.driver.version>4.12.55</db2.driver.version>
-            </properties>
-        </profile>
-
-    </profiles>
 
     <!-- ****** Gestion des dépendances ****** -->
     <dependencyManagement>
@@ -133,7 +128,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-tomcat</artifactId>
                 <version>${spring-boot.version}</version>
-                <scope>provided</scope>
             </dependency>
 
             <!-- actuator spring metrics
@@ -235,12 +229,19 @@
             <!-- ********************************* -->
             <!-- ********    Swagger    ************ -->
             <!-- ********************************* -->
+
+            <!-- swagger 2 documentation api rest
+            repo: https://mvnrepository.com/artifact/io.springfox/springfox-swagger2/2.8.0
+            doc: https://github.com/springfox/springfox-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
 
+            <!-- swagger 2 documentation api rest, composants ui
+            repo: https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui/2.8.0
+            doc: https://github.com/springfox/springfox-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
@@ -314,7 +315,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-
     </dependencies>
 
 
@@ -377,6 +377,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler.version}</version>
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
@@ -401,6 +402,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
+
         </plugins>
 
     </build>
