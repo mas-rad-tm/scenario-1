@@ -1,5 +1,6 @@
 package ch.globaz.tmmas.rentesservice.api.web.exception;
 
+import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -14,9 +15,9 @@ public class RegleMetiersNonSatisfaite extends RuntimeException {
 
     private List<String> reglesMetiersNonStaisfaite;
 
-    public RegleMetiersNonSatisfaite(List<String> reglesMetiers) {
+    public RegleMetiersNonSatisfaite(Specification specification) {
         super("Regle(s) métiers non staisfaite(s)");
-        reglesMetiersNonStaisfaite = reglesMetiers.stream().collect(Collectors.toList());    }
+        reglesMetiersNonStaisfaite = specification.getDescriptionReglesMetier();    }
 
     public List<String> getReglesMetiersNonStaisfaite() {
         return reglesMetiersNonStaisfaite;

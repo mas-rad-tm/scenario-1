@@ -32,7 +32,6 @@ import java.util.stream.Collectors;
 public class RentesServiceApplication {
 
 
-
 	private final Environment env;
 	private static final Logger LOGGER = LoggerFactory.getLogger(RentesServiceApplication.class);
 

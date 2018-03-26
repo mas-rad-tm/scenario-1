@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 @Getter
 public class Dossier implements Entity<Dossier> {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     private DossierId identifiant;
     private LocalDate dateEnregistrement;
@@ -82,9 +81,7 @@ public class Dossier implements Entity<Dossier> {
 
     Dossier() {}
 
-    public String getDateEnregistrementAsString() {
-        return this.dateEnregistrement.format(formatter);
-    }
+
 
     @Override
     public boolean sameIdentityAs(Dossier dossier) {
