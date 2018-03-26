@@ -47,7 +47,6 @@ public class RentesServiceApplication {
 	public static void main(String []args)  {
 
 		SpringApplication app = new SpringApplication(RentesServiceApplication.class);
-		//DefaultProfileUtil.setDevelopmentProfile(app);
 
 		Environment env = app.run(args).getEnvironment();
 
