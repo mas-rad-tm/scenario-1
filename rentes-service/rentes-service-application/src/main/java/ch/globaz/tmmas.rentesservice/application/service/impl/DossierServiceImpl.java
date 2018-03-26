@@ -39,18 +39,28 @@ public class DossierServiceImpl implements DossierService {
 		List<Dossier> dossiers =  repository.allDossiers();
 
 		return dossiers.stream().map(dossier -> {
-			return DossierResource.fromEntity(dossier);
+
+			return new DossierResource.DossierResourceBuilder(dossier)
+					.dateValidation(dossier.getDateValidation())
+					.dateCloture(dossier.getDateCloture()).build();
+
 		}).collect(Collectors.toList());
+
 	}
 
 	@Transactional
 	@Override
 	public Optional<DossierResource> getById(Long id) {
 
-		Optional<Dossier> dossier = repository.dossierById(id);
+		Optional<Dossier> optionnalDossier = repository.dossierById(id);
 
-		if(dossier.isPresent()){
-			DossierResource dto = DossierResource.fromEntity(dossier.get());
+		if(optionnalDossier.isPresent()){
+			Dossier dossier = optionnalDossier.get();
+
+			DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+					.dateValidation(dossier.getDateValidation())
+					.dateCloture(dossier.getDateCloture()).build();
+
 			return Optional.of(dto);
 		}else{
 			return Optional.ofNullable(null);
@@ -68,7 +78,7 @@ public class DossierServiceImpl implements DossierService {
 
 		eventPublisher.publishEvent(DossierCreeEvent.fromEntity(dossier));
 
-		return DossierResource.fromEntity(dossier);
+		return new DossierResource.DossierResourceBuilder(dossier).build();
 
 	}
 
@@ -88,7 +98,10 @@ public class DossierServiceImpl implements DossierService {
 			if(spec.isSatisfiedBy(dossier)){
 				dossier.validerDossier(command.getDateValidation());
 				repository.validerDossier(dossier);
-				DossierResource dto = DossierResource.fromEntity(dossier);
+
+				DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+						.dateValidation(command.getDateValidation()).build();
+
 				return Optional.of(dto);
 			}else{
 				throw new RegleMetiersNonSatisfaite(spec.getDescriptionReglesMetier());
@@ -115,7 +128,11 @@ public class DossierServiceImpl implements DossierService {
 			if(spec.isSatisfiedBy(dossier)){
 				dossier.cloreDossier(command.getDateCloture());
 				repository.cloreDossier(dossier);
-				DossierResource dto = DossierResource.fromEntity(dossier);
+
+				DossierResource dto = new DossierResource.DossierResourceBuilder(dossier)
+						.dateValidation(dossier.getDateValidation())
+						.dateCloture(command.getDateCloture()).build();
+
 				return Optional.of(dto);
 			}else{
 				throw new RegleMetiersNonSatisfaite(spec.getDescriptionReglesMetier());
