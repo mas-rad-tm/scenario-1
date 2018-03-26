@@ -66,6 +66,12 @@
             <!-- ********************************* -->
             <dependency>
                 <groupId>ch.globaz.tmmas</groupId>
+                <artifactId>rentes-service-api</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.globaz.tmmas</groupId>
                 <artifactId>rentes-service-application</artifactId>
                 <version>${project.parent.version}</version>
             </dependency>

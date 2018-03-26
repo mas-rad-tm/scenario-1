@@ -1,7 +1,7 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.resources;
+package ch.globaz.tmmas.rentesservice.api.web.resources;
 
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateDeserializer;
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateSerializer;
+import ch.globaz.tmmas.rentesservice.api.web.resources.localdate.LocalDateDeserializer;
+import ch.globaz.tmmas.rentesservice.api.web.resources.localdate.LocalDateSerializer;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +13,7 @@ import org.springframework.hateoas.ResourceSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
+import static ch.globaz.tmmas.rentesservice.api.web.resources.localdate.DateFormatter.DATE_FORMAT;
 
 /**
  * Ressources REST pour les dossiers

@@ -1,7 +1,7 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.exception;
+package ch.globaz.tmmas.rentesservice.api.web.exception;
 
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
-import ch.globaz.tmmas.rentesservice.application.service.impl.RegleMetiersNonSatisfaite;
+import ch.globaz.tmmas.rentesservice.api.web.resources.ApiError;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe gérant les diverses exceptions pouvant être généré lors du traitement de la requête REST

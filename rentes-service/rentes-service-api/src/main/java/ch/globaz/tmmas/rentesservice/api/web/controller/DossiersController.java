@@ -1,16 +1,18 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.controller;
+package ch.globaz.tmmas.rentesservice.api.web.controller;
 
 
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
-import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
-import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.api.event.InternalCommandPublisher;
+import ch.globaz.tmmas.rentesservice.api.service.DossierService;
+import ch.globaz.tmmas.rentesservice.api.web.resources.ApiError;
+import ch.globaz.tmmas.rentesservice.api.web.resources.DossierResource;
+
 import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.hateoas.UriTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 

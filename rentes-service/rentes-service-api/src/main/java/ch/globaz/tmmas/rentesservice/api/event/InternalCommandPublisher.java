@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.application.event;
+package ch.globaz.tmmas.rentesservice.api.event;
 
 
 import ch.globaz.tmmas.rentesservice.domain.command.DomainCommand;

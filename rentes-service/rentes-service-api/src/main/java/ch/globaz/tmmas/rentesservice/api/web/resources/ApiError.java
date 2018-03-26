@@ -1,10 +1,9 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.resources;
+package ch.globaz.tmmas.rentesservice.api.web.resources;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

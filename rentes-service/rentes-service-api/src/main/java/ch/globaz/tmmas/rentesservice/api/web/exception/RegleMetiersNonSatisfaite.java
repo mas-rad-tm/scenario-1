@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.application.service.impl;
+package ch.globaz.tmmas.rentesservice.api.web.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

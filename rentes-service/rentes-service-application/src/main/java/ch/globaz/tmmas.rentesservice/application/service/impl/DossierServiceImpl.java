@@ -1,8 +1,9 @@
 package ch.globaz.tmmas.rentesservice.application.service.impl;
 
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
+import ch.globaz.tmmas.rentesservice.api.web.exception.RegleMetiersNonSatisfaite;
+import ch.globaz.tmmas.rentesservice.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.impl.DomainEventPublisher;
-import ch.globaz.tmmas.rentesservice.application.service.DossierService;
+import ch.globaz.tmmas.rentesservice.api.service.DossierService;
 import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;

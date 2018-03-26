@@ -1,4 +1,4 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.filter;
+package ch.globaz.tmmas.rentesservice.api.web.filter;
 
 
 import org.slf4j.MDC;

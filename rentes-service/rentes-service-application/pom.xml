@@ -77,6 +77,11 @@
             <artifactId>rentes-service-domain</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>ch.globaz.tmmas</groupId>
+            <artifactId>rentes-service-api</artifactId>
+        </dependency>
+
        <dependency>
             <groupId>ch.globaz.tmmas</groupId>
             <artifactId>rentes-service-infrastructure</artifactId>

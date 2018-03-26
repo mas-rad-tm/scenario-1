@@ -1,6 +1,6 @@
 package ch.globaz.tmmas.rentesservice.application.event.impl;
 
-import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
+import ch.globaz.tmmas.rentesservice.api.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.domain.command.DomainCommand;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
-package ch.globaz.tmmas.rentesservice.application.api.web.exception;
+package ch.globaz.tmmas.rentesservice.api.web.exception;
 
-import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
-import ch.globaz.tmmas.rentesservice.application.service.impl.RegleMetiersNonSatisfaite;
+import ch.globaz.tmmas.rentesservice.api.web.resources.ApiError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
