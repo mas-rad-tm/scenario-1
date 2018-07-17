@@ -29,5 +29,13 @@ Un profil spring `db2` est paramétré pour l'utilisation d'une base de données
 * Modifier `h2`  par `db2` pour la clé `spring.profiles.active`
 * Démarrer l'application 
 
+### Fonctionnalités et tests
+L'application est une application Spring en mode `embeded`. Au lieu de déployer une archive web (.war) dans un container applicatif JEE, c'est l'application qui va embrquer un container applicatif, dans notre cas il s'agit de Apache Tomcat.
 
+#### API Rest
+L'application embarque une documentation des API disponible à cette adresse:
+> http://localhost:9200/rentes-service/swagger-ui.html
+Cette documentation est basé sur l'outil `Swagger`, fournissant une documentation, mais également une interface permettant de tester les différentes API.
+
+Les API Rest suivantes peuvent être utilisées:
 
