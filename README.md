@@ -1,5 +1,9 @@
-# Architecture distribuée
-Projet d'architecture distribuée basé sur Spring
+# Scénario 1
+Implémentation d'une architecture respectant les principes de l' "architecture hexagonale"
+
+---
+
+## Variante n° 1
 
 ## Configuration centralisée
 
