@@ -2,11 +2,17 @@
 Implémentation d'une architecture respectant les principes de l' "architecture hexagonale"
 
 ## Variante n° 1
-### Pérequis
+### Prérequis
 * Maven version 3.5.0
 * JDK version 1.8
 
-#### Pérequis
+### Exécution
+* Récupération du repository
+* Se rendre dans le dossier /scenario-1
+* lancer la commande `mvn clean install`
+* lancer l'application avec la commande `mvn spring-boot:run`
+
+#### Préequis
 
 ## Configuration centralisée
 
