@@ -17,7 +17,8 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
 
 #### Parmétrage du port
-> mvn -DPORT=1234 spring-boot:run (*remplacez 1234 par le numéro de port désiré*)
+Le port par déaut de l'application est le **9020**. Il est possible de paramétrer un autre port d'écoute pour l'application. Lancez la commande suivante:
+> **mvn -DPORT=1234 spring-boot:run** (*remplacez 1234 par le numéro de port désiré*)
 
 #### Utilisation d'une base de données physique
 Par défaut c'est une base de donnée `H2` embarquée qui est utilisée. Il est possible d'utiliser une base de données physique. 
