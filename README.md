@@ -5,8 +5,9 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 ### Prérequis
 * Maven version 3.5.0
 * JDK version 1.8
+* base de données IBM DB2 (*par défaut, utilisation d'une base de données H2 embarquée*)
 
-### Exécution
+### Exécution de l'application
 * Récupération du repository
 * Se rendre dans le dossier `/rentes-services`
 * lancer la commande `mvn clean install`
@@ -15,54 +16,46 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 
 L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
 
+### Paramétrages
 #### Parmétrage du port
-> mvn -DPORT=1234 spring-boot:run 
+Le port par déaut de l'application est le **9020**. Il est possible de paramétrer un autre port d'écoute pour l'application. Il suffit pour cela d'ajouter la varaiable **PORT** à la commande de démarrage de l'application:
+> **mvn -DPORT=1234 spring-boot:run** (*remplacez 1234 par le numéro de port désiré*)
 
 #### Utilisation d'une base de données physique
-Par défaut c'est une base de donnée 'H2' embarqué qui est utilisée. Il est possible d'utiliser une base de données physique. 
-Un profil spring `db2` est paramétré pour l'utilisation d'une base de données db2. 
+Par défaut c'est une base de donnée `H2` embarquée qui est utilisée. Il est possible d'utiliser une base de données physique. 
+Un profil spring `db2` est paramétré pour l'utilisation d'une base de données IBM DB2. 
 
 * Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application-db2.yml`
 * Adapter les paramètres en fonction de la base de données voulues
+* Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application.yml`
+* Modifier `h2`  par `db2` pour la clé `spring.profiles.active`
+* Démarrer l'application 
 
-⋅⋅⋅Le projet importe uniquement le pilote jdbc pour db2
-* Changer le profile dans le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application.yml`
-⋅⋅* changer 'h2' et remplacer par `db2` pour la clé `spring.profiles.active`
-* Démarrer l'application normalement
+#### Paramétrage des logs applicatifs
+Les logs applicatifs sont générés dans un répertoire déinis. Suivant le système d'exploitation, il y aura lieu de configurer le chemin d'écriture des fichiers de logs:
 
-#### Préequis
+* Ouvrir le fichier `/Users/seb/Developpement/TM-MAS/scenario-1/rentes-service/rentes-service-application/src/main/resources/logback-spring.xml`
+* Modifier la valeur de la propriété `logging.path`
+* Redémarrer l'application
 
-## Configuration centralisée
+### Fonctionnalités et tests
+L'application est une application Spring en mode `embeded`. Au lieu de déployer une archive web (.war) dans un container applicatif JEE, c'est l'application qui va embrquer un container applicatif, dans notre cas il s'agit de Apache Tomcat.
 
-## Build du projet
-###1. Avec maven, génération d'une archive web (war) et des sources
-```
-mvn clean install
-```
+#### API Rest
+L'application embarque une documentation des API disponible à cette url:
+> {url application}/swagger-ui.html
 
-### 2. Avec maven, génération d'une archive jar avec tomcat embarqué
-```
-mvn clean install -Pjar
-```
+Cette documentation est basé sur l'outil `Swagger`, fournissant une documentation, mais également une interface permettant de tester les différentes API.
 
-## Démarrage du projet
-### 1. Intelij, mode IDE
-```
-1.1 Cocher le profil Intelij dans la configuration maven
-1.2 Démarrage habituel (clic-droit sur la classe à démarrer, idem pour debug)
-```
+Les API Rest suivantes sont implémentés et peuvent être utilisées pour tester l'application:
+> **/dossiers**, méthode http GET, fournit la liste des dossiers
 
-### 2. Mode embarqué spring boot
-```
-cd spring-backend-application
+> **/dossiers**, méthode http POST, permet la création d'un dossier
 
-mvn spring-boot:run
-```
+> **/dossiers/{id}**, méthode http GET, fournit le détail d'un dossier 
 
-### 3. Mode tomcat
-```
-3.1 Configurer dans les paramètres intelij le serveur applicatif
-3.2 Configurer le déploiemenent:
-3.2.1 L'archive à déployer
-3.2.2 le contexte
-```
+> **/dossiers/{id}/valider**, méthode http PUT, permet la validation d'un dossier
+
+> **/dossiers/{id}/clore**, méthode http PUT, permet la cloture d'un dossier
+
+
