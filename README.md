@@ -38,11 +38,15 @@ L'application embarque une documentation des API disponible à cette adresse:
 
 Cette documentation est basé sur l'outil `Swagger`, fournissant une documentation, mais également une interface permettant de tester les différentes API.
 
-Les API Rest suivantes peuvent être utilisées:
+Les API Rest suivantes sont implémentés et peuvent être utilisées pour tester l'application:
 > **/dossiers**, méthode http GET, fournit la liste des dossiers
+
 > **/dossiers**, méthode http POST, permet la création d'un dossier
+
 > **/dossiers/{id}**, méthode http GET, fournit le détail d'un dossier 
+
 > **/dossiers/{id}/valider**, méthode http PUT, permet la validation d'un dossier
+
 > **/dossiers/{id}/clore**, méthode http PUT, permet la cloture d'un dossier
 
 
