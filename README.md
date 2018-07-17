@@ -5,6 +5,7 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 ### Prérequis
 * Maven version 3.5.0
 * JDK version 1.8
+* base de données IBM DB2 (par défaut, utilisation d'une base de données H2 embarquée)
 
 ### Exécution
 * Récupération du repository
@@ -19,8 +20,8 @@ L'application est maintenant disponible via l'url suivante: `http://localhost:90
 > mvn -DPORT=1234 spring-boot:run 
 
 #### Utilisation d'une base de données physique
-Par défaut c'est une base de donnée 'H2' embarqué qui est utilisée. Il est possible d'utiliser une base de données physique. 
-Un profil spring `db2` est paramétré pour l'utilisation d'une base de données db2. 
+Par défaut c'est une base de donnée `H2` embarquée qui est utilisée. Il est possible d'utiliser une base de données physique. 
+Un profil spring `db2` est paramétré pour l'utilisation d'une base de données IBM DB2. 
 
 * Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application-db2.yml`
 * Adapter les paramètres en fonction de la base de données voulues
