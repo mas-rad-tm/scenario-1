@@ -8,4 +8,5 @@
 *.state
 
 /.idea
+.DS_Store
 
