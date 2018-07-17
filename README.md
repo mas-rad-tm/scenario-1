@@ -5,9 +5,9 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 ### Prérequis
 * Maven version 3.5.0
 * JDK version 1.8
-* base de données IBM DB2 (par défaut, utilisation d'une base de données H2 embarquée)
+* base de données IBM DB2 (*par défaut, utilisation d'une base de données H2 embarquée*)
 
-### Exécution
+### Exécution de l'application
 * Récupération du repository
 * Se rendre dans le dossier `/rentes-services`
 * lancer la commande `mvn clean install`
@@ -17,7 +17,7 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
 
 #### Parmétrage du port
-> mvn -DPORT=1234 spring-boot:run 
+> mvn -DPORT=[no port] spring-boot:run (*no port étant le numéro de port désiré)
 
 #### Utilisation d'une base de données physique
 Par défaut c'est une base de donnée `H2` embarquée qui est utilisée. Il est possible d'utiliser une base de données physique. 
@@ -33,8 +33,8 @@ Un profil spring `db2` est paramétré pour l'utilisation d'une base de données
 L'application est une application Spring en mode `embeded`. Au lieu de déployer une archive web (.war) dans un container applicatif JEE, c'est l'application qui va embrquer un container applicatif, dans notre cas il s'agit de Apache Tomcat.
 
 #### API Rest
-L'application embarque une documentation des API disponible à cette adresse:
-> http://localhost:9200/rentes-service/swagger-ui.html
+L'application embarque une documentation des API disponible à cette url:
+> {url application}/swagger-ui.html
 
 Cette documentation est basé sur l'outil `Swagger`, fournissant une documentation, mais également une interface permettant de tester les différentes API.
 
