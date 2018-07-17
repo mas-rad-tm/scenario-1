@@ -35,7 +35,14 @@ L'application est une application Spring en mode `embeded`. Au lieu de déployer
 #### API Rest
 L'application embarque une documentation des API disponible à cette adresse:
 > http://localhost:9200/rentes-service/swagger-ui.html
+
 Cette documentation est basé sur l'outil `Swagger`, fournissant une documentation, mais également une interface permettant de tester les différentes API.
 
 Les API Rest suivantes peuvent être utilisées:
+> **/dossiers**, méthode http GET, fournit la liste des dossiers
+> **/dossiers**, méthode http POST, permet la création d'un dossier
+> **/dossiers/{id}**, méthode http GET, fournit le détail d'un dossier 
+> **/dossiers/{id}/valider**, méthode http PUT, permet la validation d'un dossier
+> **/dossiers/{id}/clore**, méthode http PUT, permet la cloture d'un dossier
+
 
