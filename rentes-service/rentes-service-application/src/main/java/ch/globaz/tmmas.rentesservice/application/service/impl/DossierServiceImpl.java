@@ -3,9 +3,9 @@ package ch.globaz.tmmas.rentesservice.application.service.impl;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.impl.DomainEventPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
-import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.CloreDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierClotEvent;
 import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
@@ -65,7 +65,7 @@ public class DossierServiceImpl implements DossierService {
 	@Override
 	public DossierResource creerDossier(CreerDossierCommand command) {
 
-		Dossier dossier = Dossier.builder(command);
+		Dossier dossier = Dossier.builder(command.getDateEnregistrement(),command.getRequerantId());
 
 		dossier =  repository.initieDossier(dossier);
 

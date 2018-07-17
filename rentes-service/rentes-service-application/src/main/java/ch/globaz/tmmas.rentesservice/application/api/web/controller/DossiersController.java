@@ -5,9 +5,9 @@ import ch.globaz.tmmas.rentesservice.application.api.web.resources.ApiError;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.event.InternalCommandPublisher;
 import ch.globaz.tmmas.rentesservice.application.service.DossierService;
-import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.CloreDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.ValiderDossierCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,24 +137,7 @@ class DossiersController {
 
 				}).orElseGet(() -> new ResponseEntity(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " + dossierId)
                 , HttpStatus.NOT_FOUND));
-/*
-		Optional<DossierResource> optionnalDossier = dossierService.getById(dossierId);
 
-		if(optionnalDossier.isPresent()){
-
-			DossierResource dossierResource = optionnalDossier.get();
-
-			putSelfLink(dossierResource);
-
-			LOGGER.debug("getDossierById() return  {}",dossierResource);
-
-			return new ResponseEntity<>(dossierResource, HttpStatus.OK);
-		}
-
-
-		return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND,"No entity found with id " + dossierId)
-				, HttpStatus.NOT_FOUND);
-*/
 
 	}
 

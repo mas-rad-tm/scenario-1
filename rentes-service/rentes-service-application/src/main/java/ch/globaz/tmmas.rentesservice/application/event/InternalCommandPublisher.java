@@ -1,7 +1,7 @@
 package ch.globaz.tmmas.rentesservice.application.event;
 
 
-import ch.globaz.tmmas.rentesservice.domain.command.DomainCommand;
+import ch.globaz.tmmas.rentesservice.application.command.DomainCommand;
 
 public interface InternalCommandPublisher {
 

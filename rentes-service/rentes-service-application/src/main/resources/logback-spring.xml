@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <springProfile name="globaz">
-        <property name="logging.path" value="C://Users/SCE/logs" />
-    </springProfile>
-
-    <springProfile name="maison">
-        <property name="logging.path" value="/logs" />
-    </springProfile>
-
-
+    <!-- log path, par déaut (linux, mac os: userHome/logs -->
+    <property name="logging.path" value="/users/seb/logs" />
 
     <!-- console, stdout standard -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -23,7 +16,7 @@
     <!-- file json formattage -->
     <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>rentes-service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${logging.path}/rentes-service/rentes-service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <maxFileSize>10MB</maxFileSize>
             <totalSizeCap>100MB</totalSizeCap>
@@ -33,14 +26,6 @@
 
     <logger name="ch.globaz.tmmas" level="DEBUG" />
     <logger name="com.ibm.db2.jcc" level="DEBUG"/>
-
-    <!-- ********** autre configuration utile p.ex ********** -->
-    <!--
-    <logger name="springfox" level="WARN" />
-    <logger name="io.springfox" level="WARN" />
-    <logger name="org" level="WARN" />
-    <logger name="io" level="WARN" />
-    -->
 
     <root level="INFO">
         <appender-ref ref="JSON" />

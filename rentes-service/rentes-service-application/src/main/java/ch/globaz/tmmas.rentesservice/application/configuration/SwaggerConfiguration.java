@@ -15,11 +15,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
+	private final static String DEFAULT_CONTROLLERS_PACKAGE =  "ch.globaz.tmmas.rentesservice.application.api.web.controller";
+
+
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage(DEFAULT_CONTROLLERS_PACKAGE))
 				.paths(PathSelectors.any())
 				.build();
 	}

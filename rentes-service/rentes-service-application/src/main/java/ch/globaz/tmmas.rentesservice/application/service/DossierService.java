@@ -2,10 +2,9 @@ package ch.globaz.tmmas.rentesservice.application.service;
 
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.DossierResource;
-import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.application.command.CloreDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.command.ValiderDossierCommand;
 
 
 import java.util.List;

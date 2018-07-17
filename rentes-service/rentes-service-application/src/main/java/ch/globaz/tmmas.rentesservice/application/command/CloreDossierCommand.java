@@ -1,6 +1,10 @@
-package ch.globaz.tmmas.rentesservice.domain.command;
+package ch.globaz.tmmas.rentesservice.application.command;
 
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateDeserializer;
+import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateSerializer;
 import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -14,6 +18,8 @@ import java.time.LocalDate;
 public class CloreDossierCommand implements DomainCommand,ValueObject<CloreDossierCommand>{
 
 	@NotNull
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate dateCloture;
 
 	public CloreDossierCommand(){}
