@@ -17,7 +17,7 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
 
 #### Parmétrage du port
-Le port par déaut de l'application est le **9020**. Il est possible de paramétrer un autre port d'écoute pour l'application. Lancez la commande suivante:
+Le port par déaut de l'application est le **9020**. Il est possible de paramétrer un autre port d'écoute pour l'application. Il suffit pour cela de passer la varaiable d'environnement PORT à la commande de démarrage de l'application:
 > **mvn -DPORT=1234 spring-boot:run** (*remplacez 1234 par le numéro de port désiré*)
 
 #### Utilisation d'une base de données physique
