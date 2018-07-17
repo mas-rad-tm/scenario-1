@@ -8,9 +8,15 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 
 ### Exécution
 * Récupération du repository
-* Se rendre dans le dossier /scenario-1
+* Se rendre dans le dossier `/rentes-services`
 * lancer la commande `mvn clean install`
+* Se rendre dans le dossier `/rentes-service-application`
 * lancer l'application avec la commande `mvn spring-boot:run`
+
+L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
+
+#### Parmétrage du port
+> `mvn -DPORT=1234 spring-boot:run 
 
 #### Préequis
 
