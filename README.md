@@ -24,9 +24,9 @@ Un profil spring `db2` est paramétré pour l'utilisation d'une base de données
 
 * Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application-db2.yml`
 * Adapter les paramètres en fonction de la base de données voulues
-..* Le projet importe uniquement le pilote jdbc pour db2
+⋅⋅* Le projet importe uniquement le pilote jdbc pour db2
 * Changer le profile dans le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application.yml`
-..* changer 'h2' et remplacer par `db2` pour la clé `spring.profiles.active`
+⋅⋅* changer 'h2' et remplacer par `db2` pour la clé `spring.profiles.active`
 * Démarrer l'application normalement
 
 #### Préequis
