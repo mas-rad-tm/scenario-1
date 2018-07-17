@@ -2,7 +2,10 @@
 Implémentation d'une architecture respectant les principes de l' "architecture hexagonale"
 
 ## Variante n° 1
-### Exécution du projet
+### Pérequis
+* Maven version 3.5.0
+* JDK version 1.8
+
 #### Pérequis
 
 ## Configuration centralisée
