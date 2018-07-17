@@ -2,6 +2,8 @@
 Implémentation d'une architecture respectant les principes de l' "architecture hexagonale"
 
 ## Variante n° 1
+### Exécution du projet
+#### Pérequis
 
 ## Configuration centralisée
 
