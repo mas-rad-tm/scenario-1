@@ -16,6 +16,7 @@ Implémentation d'une architecture respectant les principes de l' "architecture 
 
 L'application est maintenant disponible via l'url suivante: `http://localhost:9020/rentes-service`. 
 
+### Paramétrages
 #### Parmétrage du port
 Le port par déaut de l'application est le **9020**. Il est possible de paramétrer un autre port d'écoute pour l'application. Il suffit pour cela d'ajouter la varaiable **PORT** à la commande de démarrage de l'application:
 > **mvn -DPORT=1234 spring-boot:run** (*remplacez 1234 par le numéro de port désiré*)
@@ -29,6 +30,13 @@ Un profil spring `db2` est paramétré pour l'utilisation d'une base de données
 * Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/config/application.yml`
 * Modifier `h2`  par `db2` pour la clé `spring.profiles.active`
 * Démarrer l'application 
+
+#### Paramétrage des logs applicatifs
+Les logs applicatifs sont générés dans un répertoire déinis. Suivant le système d'exploitation, il y aura lieu de configurer le chemin d'écriture des fichiers de logs:
+
+* Ouvrir le fichier `/Users/seb/Developpement/TM-MAS/scenario-1/rentes-service/rentes-service-application/src/main/resources/logback-spring.xml`
+* Modifier la valeur de la propriété `logging.path`
+* Redémarrer l'application
 
 ### Fonctionnalités et tests
 L'application est une application Spring en mode `embeded`. Au lieu de déployer une archive web (.war) dans un container applicatif JEE, c'est l'application qui va embrquer un container applicatif, dans notre cas il s'agit de Apache Tomcat.
