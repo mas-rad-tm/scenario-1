@@ -20,6 +20,16 @@
         <module>rentes-service-domain</module>
     </modules>
 
+    <!-- profil spécifique pour driver db2 -->
+    <profiles>
+        <profile>
+            <id>globaz</id>
+            <properties>
+                <db2.driver.version>4.12.55</db2.driver.version>
+            </properties>
+        </profile>
+    </profiles>
+
     <!-- ****** Propriétés ****** -->
     <properties>
 
