@@ -8,6 +8,7 @@ import ch.globaz.tmmas.rentesservice.application.service.DossierService;
 import ch.globaz.tmmas.rentesservice.application.command.CloreDossierCommand;
 import ch.globaz.tmmas.rentesservice.application.command.CreerDossierCommand;
 import ch.globaz.tmmas.rentesservice.application.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.application.service.impl.DossierServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
