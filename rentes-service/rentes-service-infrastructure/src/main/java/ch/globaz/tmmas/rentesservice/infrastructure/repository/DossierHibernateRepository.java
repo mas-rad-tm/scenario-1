@@ -1,8 +1,8 @@
 package ch.globaz.tmmas.rentesservice.infrastructure.repository;
 
 
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
-import ch.globaz.tmmas.rentesservice.domain.repository.DossierRepository;
+import ch.globaz.tmmas.rentesservice.domaine.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domaine.repository.DossierRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -114,14 +114,18 @@
         </dependency>
 
         <dependency>
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit</artifactId>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit-junit</artifactId>
-            <version>0.8.2</version>
+            <artifactId>archunit</artifactId>
         </dependency>
 
     </dependencies>

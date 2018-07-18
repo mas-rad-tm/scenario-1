@@ -2,14 +2,10 @@ package ch.globaz.tmmas.rentesservice.application.event;
 
 
 
-import ch.globaz.tmmas.rentesservice.domain.event.DomainEvent;
-import ch.globaz.tmmas.rentesservice.domain.event.DossierCreeEvent;
-import ch.globaz.tmmas.rentesservice.domain.notification.NotificationService;
+import ch.globaz.tmmas.rentesservice.domaine.event.DomainEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

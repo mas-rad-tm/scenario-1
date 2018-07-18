@@ -3,7 +3,6 @@ package ch.globaz.tmmas.rentesservice.application.command;
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateDeserializer;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateSerializer;
-import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.EqualsAndHashCode;

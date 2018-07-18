@@ -5,7 +5,7 @@
 
 <hibernate-mapping default-access="field">
 
-    <class name="ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier" table="dossier"
+    <class name="ch.globaz.tmmas.rentesservice.domaine.model.dossier.Dossier" table="dossier"
            schema="rentes" mutable="true">
 
         <id name="id" column="id">
@@ -23,7 +23,7 @@
 
         <property name="status" column="status" not-null="true">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus</param>
+                <param name="enumClass">ch.globaz.tmmas.rentesservice.domaine.model.dossier.DossierStatus</param>
                 <param name="useNamed">true</param>
             </type>
         </property>

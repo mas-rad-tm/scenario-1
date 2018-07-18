@@ -2,8 +2,8 @@ package ch.globaz.tmmas.rentesservice.application.api.web.resources;
 
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateDeserializer;
 import ch.globaz.tmmas.rentesservice.application.api.web.resources.localdate.LocalDateSerializer;
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.DossierStatus;
+import ch.globaz.tmmas.rentesservice.domaine.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domaine.model.dossier.DossierStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
