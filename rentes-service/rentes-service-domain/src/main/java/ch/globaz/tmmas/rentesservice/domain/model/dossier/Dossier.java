@@ -1,15 +1,11 @@
 package ch.globaz.tmmas.rentesservice.domain.model.dossier;
 
 import ch.globaz.tmmas.rentesservice.domain.common.Entity;
-import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
-import ch.globaz.tmmas.rentesservice.domain.reglesmetiers.DateValidationPlusRecenteDateEnregistrement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @ToString
 @EqualsAndHashCode
@@ -56,8 +52,8 @@ public class Dossier implements Entity<Dossier> {
         return new Dossier(dateEnregistrement,requerantId);
     }
 
-    public static Dossier builder(CreerDossierCommand command) {
-        return new Dossier(command.getDateEnregistrement(),command.getRequerantId());
+    public static Dossier builder(LocalDate dateEnregistrement, Long requerantId) {
+        return new Dossier(dateEnregistrement,requerantId);
     }
 
     public Dossier validerDossier(LocalDate dateValidation){

@@ -1,5 +1,4 @@
-package ch.globaz.tmmas.rentesservice.domain.command;
-
+package ch.globaz.tmmas.rentesservice.command;
 
 import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
 import lombok.EqualsAndHashCode;
@@ -12,19 +11,15 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @Getter
 @ToString
-public class CreerDossierCommand implements DomainCommand,ValueObject<CreerDossierCommand> {
-
+public class ValiderDossierCommand implements DomainCommand,ValueObject<ValiderDossierCommand>{
 
 	@NotNull
-	private LocalDate dateEnregistrement;
-	@NotNull
-	private Long requerantId;
+	private LocalDate dateValidation;
 
-	CreerDossierCommand () {}
-
+	public ValiderDossierCommand(){}
 
 	@Override
-	public boolean sameValueAs(CreerDossierCommand other) {
+	public boolean sameValueAs(ValiderDossierCommand other) {
 		return this.equals(other);
 	}
 }

@@ -1,14 +1,14 @@
 package ch.globaz.tmmas.rentesservice.api.web.controller;
 
 
-import ch.globaz.tmmas.rentesservice.api.event.InternalCommandPublisher;
-import ch.globaz.tmmas.rentesservice.api.service.DossierService;
+import ch.globaz.tmmas.rentesservice.event.InternalCommandPublisher;
+import ch.globaz.tmmas.rentesservice.service.DossierService;
 import ch.globaz.tmmas.rentesservice.api.web.resources.ApiError;
 import ch.globaz.tmmas.rentesservice.api.web.resources.DossierResource;
 
-import ch.globaz.tmmas.rentesservice.domain.command.CloreDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.domain.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.command.CloreDossierCommand;
+import ch.globaz.tmmas.rentesservice.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.command.ValiderDossierCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

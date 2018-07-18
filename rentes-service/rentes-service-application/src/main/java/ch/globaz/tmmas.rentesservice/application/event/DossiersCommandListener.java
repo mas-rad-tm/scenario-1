@@ -1,6 +1,6 @@
 package ch.globaz.tmmas.rentesservice.application.event;
 
-import ch.globaz.tmmas.rentesservice.domain.command.DomainCommand;
+import ch.globaz.tmmas.rentesservice.command.DomainCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;

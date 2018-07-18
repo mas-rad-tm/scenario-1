@@ -1,4 +1,5 @@
-package ch.globaz.tmmas.rentesservice.domain.command;
+package ch.globaz.tmmas.rentesservice.command;
+
 
 import ch.globaz.tmmas.rentesservice.domain.common.ValueObject;
 import lombok.EqualsAndHashCode;
@@ -11,15 +12,19 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @Getter
 @ToString
-public class CloreDossierCommand implements DomainCommand,ValueObject<CloreDossierCommand>{
+public class CreerDossierCommand implements DomainCommand,ValueObject<CreerDossierCommand> {
+
 
 	@NotNull
-	private LocalDate dateCloture;
+	private LocalDate dateEnregistrement;
+	@NotNull
+	private Long requerantId;
 
-	public CloreDossierCommand(){}
+	CreerDossierCommand () {}
+
 
 	@Override
-	public boolean sameValueAs(CloreDossierCommand other) {
+	public boolean sameValueAs(CreerDossierCommand other) {
 		return this.equals(other);
 	}
 }
