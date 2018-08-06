@@ -2,7 +2,7 @@ package ch.globaz.tmmas.rentesservice.application.dossier.event;
 
 
 
-import ch.globaz.tmmas.rentesservice.domain.event.DomainEvent;
+import ch.globaz.tmmas.rentesservice.domain.common.event.DomainEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

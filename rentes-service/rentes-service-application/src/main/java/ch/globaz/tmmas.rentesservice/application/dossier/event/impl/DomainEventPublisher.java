@@ -1,7 +1,7 @@
 package ch.globaz.tmmas.rentesservice.application.dossier.event.impl;
 
-import ch.globaz.tmmas.rentesservice.dossier.event.InternalEventPublisher;
-import ch.globaz.tmmas.rentesservice.domain.event.DomainEvent;
+import ch.globaz.tmmas.rentesservice.api.dossier.event.InternalEventPublisher;
+import ch.globaz.tmmas.rentesservice.domain.common.event.DomainEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

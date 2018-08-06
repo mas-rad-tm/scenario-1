@@ -1,7 +1,7 @@
 package ch.globaz.tmmas.rentesservice.domain.dossier.event;
 
 import ch.globaz.tmmas.rentesservice.domain.common.GlobalParamers;
-import ch.globaz.tmmas.rentesservice.domain.event.DomainEvent;
+import ch.globaz.tmmas.rentesservice.domain.common.event.DomainEvent;
 import ch.globaz.tmmas.rentesservice.domain.dossier.model.Dossier;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

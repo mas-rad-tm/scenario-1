@@ -3,7 +3,7 @@ package ch.globaz.tmmas.rentesservice.infrastructure.dossier.repository;
 
 import ch.globaz.tmmas.rentesservice.domain.dossier.model.Dossier;
 import ch.globaz.tmmas.rentesservice.domain.dossier.repository.DossierRepository;
-import ch.globaz.tmmas.rentesservice.infrastructure.repository.HibernateRepository;
+import ch.globaz.tmmas.rentesservice.infrastructure.common.repository.HibernateRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;

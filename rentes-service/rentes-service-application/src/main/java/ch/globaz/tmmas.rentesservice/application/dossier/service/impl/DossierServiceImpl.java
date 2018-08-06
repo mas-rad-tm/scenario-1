@@ -1,12 +1,12 @@
 package ch.globaz.tmmas.rentesservice.application.dossier.service.impl;
 
-import ch.globaz.tmmas.rentesservice.dossier.api.web.exception.RegleMetiersNonSatisfaite;
-import ch.globaz.tmmas.rentesservice.dossier.api.web.resources.DossierResource;
+import ch.globaz.tmmas.rentesservice.api.dossier.web.exception.RegleMetiersNonSatisfaite;
+import ch.globaz.tmmas.rentesservice.api.dossier.web.resources.DossierResource;
 import ch.globaz.tmmas.rentesservice.application.dossier.event.impl.DomainEventPublisher;
-import ch.globaz.tmmas.rentesservice.dossier.service.DossierService;
-import ch.globaz.tmmas.rentesservice.dossier.command.CloreDossierCommand;
-import ch.globaz.tmmas.rentesservice.dossier.command.CreerDossierCommand;
-import ch.globaz.tmmas.rentesservice.dossier.command.ValiderDossierCommand;
+import ch.globaz.tmmas.rentesservice.api.dossier.service.DossierService;
+import ch.globaz.tmmas.rentesservice.api.dossier.command.CloreDossierCommand;
+import ch.globaz.tmmas.rentesservice.api.dossier.command.CreerDossierCommand;
+import ch.globaz.tmmas.rentesservice.api.dossier.command.ValiderDossierCommand;
 import ch.globaz.tmmas.rentesservice.domain.common.specification.Specification;
 import ch.globaz.tmmas.rentesservice.domain.dossier.event.DossierClotEvent;
 import ch.globaz.tmmas.rentesservice.domain.dossier.event.DossierCreeEvent;
