@@ -1,7 +1,7 @@
 # Scénario 1
 Implémentation d'une architecture respectant les principes de l' "architecture hexagonale"
 
-## Variante n° 2
+## Variante n° 3
 ### Prérequis
 * Maven version 3.5.0
 * JDK version 1.8

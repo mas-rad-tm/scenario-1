@@ -1,6 +1,6 @@
 package ch.globaz.tmmas.rentesservice.domain.model;
 
-import ch.globaz.tmmas.rentesservice.domain.model.dossier.Dossier;
+import ch.globaz.tmmas.rentesservice.domain.dossier.model.Dossier;
 import org.junit.jupiter.api.Test;
 
 
