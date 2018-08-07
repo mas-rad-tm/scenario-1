@@ -34,7 +34,7 @@ Un profil spring `db2` est paramétré pour l'utilisation d'une base de données
 #### Paramétrage des logs applicatifs
 Les logs applicatifs sont générés dans un répertoire déinis. Suivant le système d'exploitation, il y aura lieu de configurer le chemin d'écriture des fichiers de logs:
 
-* Ouvrir le fichier `/Users/seb/Developpement/TM-MAS/scenario-1/rentes-service/rentes-service-application/src/main/resources/logback-spring.xml`
+* Ouvrir le fichier `/rentes-service/rentes-service-application/src/main/resources/logback-spring.xml`
 * Modifier la valeur de la propriété `logging.path`
 * Redémarrer l'application
 
